@@ -1,0 +1,42 @@
+.rootMain {
+    height: 100%;
+    width: 100%;
+    padding-top: 2.06rem;
+    padding-left: 1.81rem;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .left {
+        width: 60%;
+        .welcomeCard {
+        }
+
+        .graphs {
+            margin-top: 2rem;
+            // background-color: red;
+            width: 100%;
+            height: 300px;
+        }
+
+        .clientLists {
+            margin-top: 2rem;
+            padding-bottom: 2rem;
+            height: fit-content;
+            width: 100%;
+            // background-color: aqua;
+        }
+    }
+
+    .right {
+        width: 35%;
+        height: 100%;
+        // background-color: pink;
+        margin-right: 50px;
+        .exercises {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
