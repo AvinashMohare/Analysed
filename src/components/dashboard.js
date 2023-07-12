@@ -1,9 +1,9 @@
-import classes from "../styles/Main.module.scss";
+import classes from "../styles/Dashboard.module.scss";
 import ClientList from "./clientList";
 import Exercises from "./exercises";
 import WelcomeCard from "./welcomeCard";
 
-const Main = () => {
+const Dashboard = () => {
     return (
         <div className={classes.rootMain}>
             <div className={classes.left}>
@@ -30,4 +30,4 @@ const Main = () => {
     );
 };
 
-export default Main;
+export default Dashboard;

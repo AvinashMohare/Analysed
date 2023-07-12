@@ -8,10 +8,10 @@
     align-items: center;
     padding: 15px;
     .greet {
-        width: 13vw;
+        width: 14vw;
         .greeting {
-            font-weight: 800;
-            font-size: 1.9vw;
+            font-weight: 600;
+            font-size: 2vw;
             color: #0d30ac;
         }
         .time {
@@ -67,7 +67,7 @@
 
                     &::placeholder {
                         color: #4371cb80;
-                        font-weight: 800;
+                        font-weight: 600;
                     }
                 }
             }

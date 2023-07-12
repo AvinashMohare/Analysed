@@ -1,5 +1,5 @@
 import classes from "./styles/App.module.scss";
-import Main from "./components/main";
+import Dashboard from "./components/dashboard";
 import Header from "./components/header";
 import Profile from "./components/profile";
 import SideBar from "./components/sideBar";
@@ -35,7 +35,7 @@ function App() {
                         <Header />
                     </div>
                     <div className={classes.bottom}>
-                        <Main />
+                        <Dashboard />
                     </div>
                 </div>
             </div>

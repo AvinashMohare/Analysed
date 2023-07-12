@@ -8,11 +8,12 @@
     justify-content: center;
 
     .userPicture {
+        background-color: red;
         overflow: hidden;
         width: 8vw;
         height: 8vw;
         border: 4px solid #0d30ac;
-        border-radius: 999px;
+        border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -26,14 +27,15 @@
     .name {
         margin-top: 15px;
         font-weight: 600;
-        font-size: 25px;
+        font-size: 26px;
         text-align: center;
         color: #0d30ac;
 
         span {
             display: block;
-            font-weight: 400;
-            font-size: 20px;
+            font-weight: 500;
+            font-size: 18px;
+            color: #4371cb;
         }
     }
 }
