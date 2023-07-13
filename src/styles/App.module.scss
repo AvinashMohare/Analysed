@@ -41,20 +41,23 @@
 
                 .icon {
                     height: 100%;
-                    width: 20%;
+                    width: 18%;
                     // background-color: red;
                     display: flex;
                     align-items: center;
                     justify-content: center;
+
+                    // padding: 8px;
                 }
 
                 .option {
-                    width: 50%;
+                    // background-color: bisque;
+                    width: 60%;
                     // height: 100%;
-                    padding: 10px;
+                    padding-left: 0.8vw;
                     span {
                         font-weight: 600;
-                        font-size: 20px;
+                        font-size: 1vw;
                         color: #0d30ac;
                     }
                 }
