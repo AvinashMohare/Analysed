@@ -3,7 +3,7 @@ import ClientList from "./clientList";
 import Exercises from "./exercises";
 import WelcomeCard from "./welcomeCard";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
     return (
         <div className={classes.rootMain}>
             <div className={classes.left}>

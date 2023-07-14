@@ -2,7 +2,6 @@ import classes from "../styles/SideBar.module.scss";
 
 import { MdSpaceDashboard, MdChatBubble } from "react-icons/md";
 import { IoMdSettings } from "react-icons/io";
-import { BsFillChatLeftFill } from "react-icons/bs";
 import { BiRun } from "react-icons/bi";
 import { FaUserGroup } from "react-icons/fa6";
 

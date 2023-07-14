@@ -71,7 +71,7 @@ const ClientList = () => {
                     return (
                         <tr key={key}>
                             <td className={classes.profilePic}>
-                                <img src={val.user}></img>
+                                <img src={val.user} alt={val.name}></img>
                             </td>
                             <td>{val.name}</td>
                             <td>{val.age}</td>

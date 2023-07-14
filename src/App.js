@@ -1,44 +1,35 @@
-import classes from "./styles/App.module.scss";
-import Dashboard from "./components/dashboard";
-import Header from "./components/header";
-import Profile from "./components/profile";
-import SideBar from "./components/sideBar";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import { MdLogout } from "react-icons/md";
+import Home from "./pages/Home/home";
+import Login from "./pages/Login/login";
+// import Signup from "./pages/SignUp/signup";
+import Signup from "./pages/SignUp/signup";
+import { auth } from "./firebase";
+
+import "./App.css";
 
 function App() {
+    const [userName, setUserName] = useState("");
+
+    useEffect(() => {
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                setUserName(user.displayName);
+            } else setUserName("");
+        });
+    }, []);
+
     return (
         <div className="App">
-            <div className={classes.root}>
-                <div className={classes.left}>
-                    <div className={classes.profile}>
-                        <Profile />
-                    </div>
-
-                    <div className={classes.sideBar}>
-                        <SideBar />
-                    </div>
-
-                    <div className={classes.logout}>
-                        <div className={classes.button}>
-                            <div className={classes.icon}>
-                                <MdLogout size={35} color="#0D30AC" />
-                            </div>
-                            <div className={classes.option}>
-                                <span>Log Out</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div className={classes.right}>
-                    <div className={classes.top}>
-                        <Header />
-                    </div>
-                    <div className={classes.bottom}>
-                        <Dashboard />
-                    </div>
-                </div>
-            </div>
+            <Router>
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    {/* <Route path="/signup" element={<Signup />} /> */}
+                    <Route path="/" element={<Signup />} />
+                    <Route path="/home" element={<Home name={userName} />} />
+                </Routes>
+            </Router>
         </div>
     );
 }

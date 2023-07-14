@@ -47,7 +47,10 @@ const Exercises = () => {
                 {ExercisesArray.map((Exercise) => {
                     return (
                         <div className={classes.exercises}>
-                            <img src={Exercise.image}></img>
+                            <img
+                                src={Exercise.image}
+                                alt={Exercise.title}
+                            ></img>
 
                             <div className={classes.calories}>
                                 <div className={classes.icon}>
