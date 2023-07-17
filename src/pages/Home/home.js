@@ -4,6 +4,7 @@ import Header from "../../components/header";
 import Profile from "../../components/profile";
 import SideBar from "../../components/sideBar";
 import { MdLogout } from "react-icons/md";
+import CardComponent from "./try";
 
 function Home(props) {
     return (
@@ -34,7 +35,9 @@ function Home(props) {
                         <Header />
                     </div>
                     <div className={classes.bottom}>
-                        <Dashboard />
+                        {/* <Dashboard /> */}
+                        {/* <CardList /> */}
+                        <CardComponent />
                     </div>
                 </div>
             </div>

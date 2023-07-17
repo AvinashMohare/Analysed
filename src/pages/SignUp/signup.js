@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 
-import InputControl from "../InputControl/inputControl";
+import InputControl from "../../components/inputControl";
 import { auth, db } from "../../firebase";
 
 import styles from "./Signup.module.css";
@@ -96,8 +96,8 @@ function Signup() {
 
                 <InputControl
                     label="Age"
-                    // placeholder="Enter Age"
-                    // onChange={(e) => setAge(e.target.value)}
+                    placeholder="Enter Age"
+                    onChange={(e) => setAge(e.target.value)}
                 />
 
                 <label for="gender" className={styles.gender}>
