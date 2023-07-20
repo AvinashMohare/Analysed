@@ -4,17 +4,32 @@ import Header from "../../components/header";
 import Profile from "../../components/profile";
 import SideBar from "../../components/sideBar";
 import { MdLogout } from "react-icons/md";
-
 import { useState } from "react";
 
 import MainExercises from "../Exercises/mainExercises";
 
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
+
 function Home(props) {
-    // ..........................................................................................................................................................................
+    //For signout option
+    const navigate = useNavigate();
 
-    // ...........................................................................................................................................................................
+    const handleLogout = () => {
+        signOut(auth)
+            .then(() => {
+                // Logout successful, navigate to the login page
+                navigate("/login"); // Assuming your login page route is '/login'
+            })
+            .catch((error) => {
+                // Handle any errors that occurred during logout
+                console.log("Logout Error:", error);
+            });
+    };
+
+    //For sidebar
     const [selectedOption, setSelectedOption] = useState(0);
-
     //Map of options to their corresponding components
     const componentMap = {
         0: <Dashboard />,
@@ -41,7 +56,7 @@ function Home(props) {
                     </div>
 
                     <div className={classes.logout}>
-                        <div className={classes.button}>
+                        <div className={classes.button} onClick={handleLogout}>
                             <div className={classes.icon}>
                                 <MdLogout size={35} color="#0D30AC" />
                             </div>

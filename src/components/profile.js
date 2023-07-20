@@ -52,7 +52,7 @@ const Profile = () => {
             </div>
             <p className={classes.name}>
                 {userData ? userData.username : "Loading..."}
-                <span>Lorem Ipsum Lorem sum</span>
+                {/* <span>Lorem Ipsum Lorem sum</span> */}
             </p>
         </div>
     );
