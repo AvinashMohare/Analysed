@@ -1,12 +1,30 @@
-import classes from "../../styles/Home.module.scss";
+import classes from "./Home.module.scss";
 import Dashboard from "../../components/dashboard";
 import Header from "../../components/header";
 import Profile from "../../components/profile";
 import SideBar from "../../components/sideBar";
 import { MdLogout } from "react-icons/md";
-import CardComponent from "./try";
+
+import { useState } from "react";
+
+import MainExercises from "../Exercises/mainExercises";
 
 function Home(props) {
+    const [selectedOption, setSelectedOption] = useState(0);
+
+    //Map of options to their corresponding components
+    const componentMap = {
+        0: <Dashboard />,
+        1: <>Clients</>,
+        2: <MainExercises />,
+        3: <>Chat</>,
+        4: <>Settings</>,
+    };
+
+    const handleOptionClick = (index) => {
+        setSelectedOption(index);
+    };
+
     return (
         <div className="App">
             <div className={classes.root}>
@@ -16,7 +34,7 @@ function Home(props) {
                     </div>
 
                     <div className={classes.sideBar}>
-                        <SideBar />
+                        <SideBar handleOptionClick={handleOptionClick} />
                     </div>
 
                     <div className={classes.logout}>
@@ -35,9 +53,8 @@ function Home(props) {
                         <Header />
                     </div>
                     <div className={classes.bottom}>
-                        {/* <Dashboard /> */}
-                        {/* <CardList /> */}
-                        <CardComponent />
+                        {selectedOption !== null &&
+                            componentMap[selectedOption]}
                     </div>
                 </div>
             </div>

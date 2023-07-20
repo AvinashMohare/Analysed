@@ -38,9 +38,17 @@
                 color: #0d30ac;
             }
 
-            &:first-child {
-                background-color: white;
-                border-radius: 35px;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        .selectedOption {
+            background-color: white;
+            font-size: 2vw;
+            border-radius: 35px;
+
+            .icon {
+                color: #0d30ac;
             }
         }
     }
