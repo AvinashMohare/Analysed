@@ -10,6 +10,9 @@ import { useState } from "react";
 import MainExercises from "../Exercises/mainExercises";
 
 function Home(props) {
+    // ..........................................................................................................................................................................
+
+    // ...........................................................................................................................................................................
     const [selectedOption, setSelectedOption] = useState(0);
 
     //Map of options to their corresponding components
@@ -30,7 +33,7 @@ function Home(props) {
             <div className={classes.root}>
                 <div className={classes.left}>
                     <div className={classes.profile}>
-                        <Profile name={props.name} />
+                        <Profile />
                     </div>
 
                     <div className={classes.sideBar}>
