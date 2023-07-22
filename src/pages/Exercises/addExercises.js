@@ -1,100 +1,80 @@
-import React, { useState } from "react";
-import styles from "./AddExercises.module.scss";
-import { db } from "../../firebase"; // Import your Firebase instance from your config file
+import { useState } from "react";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
-const AddExercise = () => {
-    const [exerciseData, setExerciseData] = useState({
-        video: "",
-        title: "",
-        description: "",
-        musclesInvolved: "",
-    });
+const AddExercises = () => {
+    const [video, setVideo] = useState(null);
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [musclesInvolved, setMusclesInvolved] = useState("");
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setExerciseData((prevData) => ({ ...prevData, [name]: value }));
+    const handleVideoChange = (e) => {
+        const file = e.target.files[0];
+        setVideo(file);
     };
 
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        // Handle the file upload, you can implement this part based on your requirements.
-        // For example, you can use FileReader API to read the video file and convert it to a data URL.
-        // Here, we are just setting the file name for demonstration purposes.
-        setExerciseData((prevData) => ({ ...prevData, video: file.name }));
-    };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
+        // Step 1: Upload video to Firebase Storage
+        const storage = getStorage();
+        const videoRef = ref(storage, `exerciseVideos/${video.name}`);
+        await uploadBytes(videoRef, video);
 
-        // Push the exerciseData to Firebase Firestore using the db instance
-        db.collection("exercises")
-            .add(exerciseData)
-            .then((docRef) => {
-                console.log("Document written with ID: ", docRef.id);
-                // Clear the form after successful submission
-                setExerciseData({
-                    video: "",
-                    title: "",
-                    description: "",
-                    musclesInvolved: "",
-                });
-            })
-            .catch((error) => {
-                console.error("Error adding document: ", error);
-            });
+        // Step 2: Get the download URL of the uploaded video
+        const videoURL = await getDownloadURL(videoRef);
+
+        // Step 3: Save exercise data to Firebase Firestore
+        const exerciseData = {
+            videoURL,
+            title,
+            description,
+            musclesInvolved,
+            uploadedBy: "current_user_id", // Replace 'current_user_id' with the actual user ID
+            // You can get the current user ID using Firebase Auth or any other authentication method you use
+        };
+
+        try {
+            const docRef = await addDoc(
+                collection(db, "exercises"),
+                exerciseData
+            );
+            console.log("Exercise added with ID: ", docRef.id);
+            // Reset the form fields after successful upload
+            setVideo(null);
+            setTitle("");
+            setDescription("");
+            setMusclesInvolved("");
+        } catch (error) {
+            console.error("Error adding exercise: ", error);
+        }
     };
 
     return (
-        <div className={styles.addExercise}>
-            <h2>Add New Exercise</h2>
-            <form onSubmit={handleSubmit}>
-                <div className={styles.formGroup}>
-                    <label htmlFor="video">Upload Video:</label>
-                    <input
-                        type="file"
-                        id="video"
-                        name="video"
-                        accept="video/*"
-                        onChange={handleFileChange}
-                    />
-                </div>
-
-                <div className={styles.formGroup}>
-                    <label htmlFor="title">Title:</label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        value={exerciseData.title}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div className={styles.formGroup}>
-                    <label htmlFor="description">Description:</label>
-                    <textarea
-                        id="description"
-                        name="description"
-                        value={exerciseData.description}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <div className={styles.formGroup}>
-                    <label htmlFor="musclesInvolved">Muscles Involved:</label>
-                    <input
-                        type="text"
-                        id="musclesInvolved"
-                        name="musclesInvolved"
-                        value={exerciseData.musclesInvolved}
-                        onChange={handleChange}
-                    />
-                </div>
-
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+        <form onSubmit={handleSubmit}>
+            <input type="file" onChange={handleVideoChange} />
+            <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Title"
+            />
+            <input
+                type="text"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Description"
+            />
+            <input
+                type="text"
+                value={musclesInvolved}
+                onChange={(e) => setMusclesInvolved(e.target.value)}
+                placeholder="Muscles Involved"
+            />
+            <button type="submit">Submit</button>
+        </form>
     );
 };
 
-export default AddExercise;
+export default AddExercises;

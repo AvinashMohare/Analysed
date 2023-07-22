@@ -8,16 +8,19 @@
     align-items: center;
     padding: 15px;
     .greet {
-        width: 14vw;
+        // background-color: aqua;
+        width: 16vw;
         .greeting {
             font-weight: 600;
             font-size: 2vw;
             color: #0d30ac;
         }
         .time {
+            // background-color: red;
             display: flex;
             flex-direction: row;
             width: 80%;
+            padding-right: 1vw;
             justify-content: space-between;
             span {
                 color: #0d30ac;
