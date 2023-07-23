@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../firebase";
+import { db, auth } from "../../firebase";
 
 const AddExercises = () => {
     const [video, setVideo] = useState(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [musclesInvolved, setMusclesInvolved] = useState("");
+    const [caloriesBurnPerMin, setCaloriesBurnPerMin] = useState("");
 
     const handleVideoChange = (e) => {
         const file = e.target.files[0];
@@ -19,7 +20,7 @@ const AddExercises = () => {
 
         // Step 1: Upload video to Firebase Storage
         const storage = getStorage();
-        const videoRef = ref(storage, `exerciseVideos/${video.name}`);
+        const videoRef = ref(storage, `exercise/${video.name}`);
         await uploadBytes(videoRef, video);
 
         // Step 2: Get the download URL of the uploaded video
@@ -31,7 +32,8 @@ const AddExercises = () => {
             title,
             description,
             musclesInvolved,
-            uploadedBy: "current_user_id", // Replace 'current_user_id' with the actual user ID
+            caloriesBurnPerMin,
+            userId: auth?.currentUser?.uid,
             // You can get the current user ID using Firebase Auth or any other authentication method you use
         };
 
@@ -71,6 +73,12 @@ const AddExercises = () => {
                 value={musclesInvolved}
                 onChange={(e) => setMusclesInvolved(e.target.value)}
                 placeholder="Muscles Involved"
+            />
+            <input
+                type="text"
+                value={caloriesBurnPerMin}
+                onChange={(e) => setCaloriesBurnPerMin(e.target.value)}
+                placeholder="Calories Burn Per Minute"
             />
             <button type="submit">Submit</button>
         </form>
