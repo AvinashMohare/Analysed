@@ -5,6 +5,7 @@ import { db, auth } from "../../firebase";
 
 const AddExercises = () => {
     const [video, setVideo] = useState(null);
+    const [thumbnail, setThumbnail] = useState(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [musclesInvolved, setMusclesInvolved] = useState("");
@@ -15,6 +16,11 @@ const AddExercises = () => {
         setVideo(file);
     };
 
+    const handleThumbnailChange = (e) => {
+        const file = e.target.files[0];
+        setThumbnail(file);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -23,12 +29,21 @@ const AddExercises = () => {
         const videoRef = ref(storage, `exercise/${video.name}`);
         await uploadBytes(videoRef, video);
 
-        // Step 2: Get the download URL of the uploaded video
-        const videoURL = await getDownloadURL(videoRef);
+        // Step 2: Upload thumbnail to Firebase Storage
+        const thumbnailRef = ref(
+            storage,
+            `exercise/thumbnails/${thumbnail.name}`
+        );
+        await uploadBytes(thumbnailRef, thumbnail);
 
-        // Step 3: Save exercise data to Firebase Firestore
+        // Step 3: Get the download URLs of the uploaded video and thumbnail
+        const videoURL = await getDownloadURL(videoRef);
+        const thumbnailURL = await getDownloadURL(thumbnailRef);
+
+        // Step 4: Save exercise data to Firebase Firestore
         const exerciseData = {
             videoURL,
+            thumbnailURL,
             title,
             description,
             musclesInvolved,
@@ -45,6 +60,7 @@ const AddExercises = () => {
             console.log("Exercise added with ID: ", docRef.id);
             // Reset the form fields after successful upload
             setVideo(null);
+            setThumbnail(null);
             setTitle("");
             setDescription("");
             setMusclesInvolved("");
@@ -56,6 +72,7 @@ const AddExercises = () => {
     return (
         <form onSubmit={handleSubmit}>
             <input type="file" onChange={handleVideoChange} />
+            <input type="file" onChange={handleThumbnailChange} />
             <input
                 type="text"
                 value={title}
