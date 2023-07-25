@@ -3,7 +3,7 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import { db, auth } from "../../firebase";
 
-const AddExercises = () => {
+const AddExercises = ({ onBackClick }) => {
     const [video, setVideo] = useState(null);
     const [thumbnail, setThumbnail] = useState(null);
     const [title, setTitle] = useState("");
@@ -69,6 +69,11 @@ const AddExercises = () => {
         }
     };
 
+    //Handle Back Click
+    const handleBackClick = () => {
+        onBackClick();
+    };
+
     return (
         <form onSubmit={handleSubmit}>
             <input type="file" onChange={handleVideoChange} />
@@ -98,6 +103,7 @@ const AddExercises = () => {
                 placeholder="Calories Burn Per Minute"
             />
             <button type="submit">Submit</button>
+            <button onClick={handleBackClick}>Back to Exercises</button>
         </form>
     );
 };
