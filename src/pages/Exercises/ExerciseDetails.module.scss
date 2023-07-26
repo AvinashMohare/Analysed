@@ -1,15 +1,114 @@
 .exerciseDetailsContainer {
     .exerciseTitle {
+        font-weight: 700;
+        font-size: 36px;
+        letter-spacing: 0.2px;
+        height: 4vw;
+        width: 100%;
+        // overflow: hidden;
+        p {
+            color: #3b3c40;
+        }
     }
 
-    .thumbnailContainer {
-        width: 30vw;
-        height: 30vw;
-        overflow: hidden;
+    .container {
+        display: flex;
+        flex-direction: row;
 
-        .thumbnailImage {
-            height: 30vw;
-            width: 30vw;
+        .left {
+            width: 30%;
+            .thumbnailContainer {
+                width: 22.5vw;
+                height: 29vw;
+
+                .thumbnailImage {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 20px;
+                }
+            }
+        }
+
+        .right {
+            padding-left: 2vw;
+            width: 71%;
+
+            .descriptionContainer {
+                // height: 12vw;
+                padding-bottom: 2vw;
+                .descriptionTitle {
+                    font-size: 36px;
+                    font-weight: 700;
+                    height: 4vw;
+                    width: 100%;
+                    p {
+                        color: #3b3c40;
+                    }
+                }
+
+                .descriptionContent {
+                    font-weight: 400;
+                    font-size: 2em;
+                }
+            }
+
+            .musclesInvolvedContainer {
+                height: 8vw;
+                width: 100%;
+                .musclesInvolvedTitle {
+                    height: 3vw;
+                    p {
+                        font-weight: 700;
+                        font-size: 24px;
+                        color: #614d8f;
+                    }
+                }
+
+                .musclesList {
+                    display: flex;
+                    flex-direction: row;
+
+                    .musclesInvolved {
+                        // height: 2vw;
+                        padding: 0.5vw 1.5vw;
+                        background-color: #e7f3ff;
+                        margin-right: 1vw;
+                        border-radius: 5px;
+
+                        p {
+                            font-size: 1vw;
+                            font-weight: 600;
+                            color: #614d8f;
+                        }
+                    }
+                }
+            }
+
+            .videosContainer {
+                height: 20vw;
+                .videosTitle {
+                    height: 3vw;
+                    p {
+                        font-weight: 700;
+                        font-size: 24px;
+                        color: #614d8f;
+                    }
+                }
+
+                .videoItem {
+                    height: 13.5vw;
+                    width: 13vw;
+                    border-radius: 10px;
+
+                    video {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 10px;
+                        overflow: hidden;
+                        object-fit: cover;
+                    }
+                }
+            }
         }
     }
 }

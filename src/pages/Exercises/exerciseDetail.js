@@ -20,54 +20,77 @@ import React from "react";
 import classes from "./ExerciseDetails.module.scss";
 
 const ExerciseDetails = ({ exercise, onClose }) => {
+    const musclesData = exercise.musclesInvolved;
+    // Process the data and split into individual card components
+    const cardsArray = musclesData.split(",");
+
     return (
         <div className={classes.exerciseDetailsContainer}>
-            <div className={classes.exerciseTitle}>{exercise.title}</div>
-            <div className={classes.thumbnailContainer}>
-                <img
-                    className={classes.thumbnailImage}
-                    src={exercise.thumbnailURL}
-                    alt="Exercise Thumbnail"
-                />
-            </div>
-            <div className="description-container">
-                <div className="description-title">Description</div>
-                <div className="description-content">
-                    Wall angels are a great way to warm up your shoulders and
-                    upper back before a workout, or to help relieve tension and
-                    tightness in those areas after a long day at work.
-                </div>
+            <div className={classes.exerciseTitle}>
+                <p>{exercise.title}</p>
             </div>
 
-            <div className="videos-container">
-                <div className="videos-title">Videos</div>
-                <div className="video-item">
-                    <img
-                        className="video-thumbnail"
-                        src="https://via.placeholder.com/266x276"
-                        alt="Video Thumbnail"
-                    />
-                    <div className="play-icon">
-                        <div className="inner-circle"></div>
+            <div className={classes.container}>
+                <div className={classes.left}>
+                    <div className={classes.thumbnailContainer}>
+                        <img
+                            className={classes.thumbnailImage}
+                            src={exercise.thumbnailURL}
+                            alt="Exercise Thumbnail"
+                        />
                     </div>
                 </div>
-            </div>
-            <div className="muscles-involved-container">
-                <div className="muscles-involved-title">Muscles Involved</div>
-                <div className="muscles-list">
-                    <div className="muscle-item">Abdominis</div>
-                    <div className="muscle-item">Hip Flexors</div>
-                    <div className="muscle-item">Obliques</div>
-                    <div className="modify-btn">Modify</div>
-                </div>
-            </div>
-            <div className="about-container">
-                <div className="about-title">About</div>
-                <div className="about-content">
-                    Lorem ipsum dolor sit amet consectetur. Tellus consequat dui
-                    semper turpis justo egestas. Blandit sit egestas egestas
-                    enim amet viverra interdum. Cursus sodales tincidunt diam
-                    tortor sem quisque.
+
+                <div className={classes.right}>
+                    <div className={classes.descriptionContainer}>
+                        <div className={classes.descriptionTitle}>
+                            <p>Description</p>
+                        </div>
+
+                        <div className={classes.descriptionContent}>
+                            <p>
+                                Wall angels are a great way to warm up your
+                                shoulders and upper back before a workout, or to
+                                help relieve tension and tightness in those
+                                areas after a long day at work.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className={classes.musclesInvolvedContainer}>
+                        <div className={classes.musclesInvolvedTitle}>
+                            <p>Muscles Involved</p>
+                        </div>
+                        <div className={classes.musclesList}>
+                            {cardsArray.map((muscles, index) => (
+                                <div
+                                    key={index}
+                                    className={classes.musclesInvolved}
+                                >
+                                    <p>{muscles}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className={classes.videosContainer}>
+                        <div className={classes.videosTitle}>
+                            <p>Videos</p>
+                        </div>
+                        <div className={classes.videoItem}>
+                            <video src={exercise.videoURL}></video>
+                        </div>
+                    </div>
+
+                    <div className="about-container">
+                        <div className="about-title">About</div>
+                        <div className="about-content">
+                            Lorem ipsum dolor sit amet consectetur. Tellus
+                            consequat dui semper turpis justo egestas. Blandit
+                            sit egestas egestas enim amet viverra interdum.
+                            Cursus sodales tincidunt diam tortor sem quisque.
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
