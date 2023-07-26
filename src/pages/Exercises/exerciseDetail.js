@@ -17,15 +17,15 @@
 // export default ExerciseDetails;
 
 import React from "react";
-import "./ExerciseDetails.module.scss";
+import classes from "./ExerciseDetails.module.scss";
 
 const ExerciseDetails = ({ exercise, onClose }) => {
     return (
-        <div className="exercise-details-container">
-            <div className="exercise-title">{exercise.title}</div>
-            <div className="thumbnail-container">
+        <div className={classes.exerciseDetailsContainer}>
+            <div className={classes.exerciseTitle}>{exercise.title}</div>
+            <div className={classes.thumbnailContainer}>
                 <img
-                    className="thumbnail-image"
+                    className={classes.thumbnailImage}
                     src={exercise.thumbnailURL}
                     alt="Exercise Thumbnail"
                 />
@@ -38,15 +38,7 @@ const ExerciseDetails = ({ exercise, onClose }) => {
                     tightness in those areas after a long day at work.
                 </div>
             </div>
-            <div className="change-cover-btn">Change cover picture</div>
-            <div className="upload-btn">
-                <img
-                    className="upload-icon"
-                    src="./upload.svg"
-                    alt="Upload Icon"
-                />
-                Upload new
-            </div>
+
             <div className="videos-container">
                 <div className="videos-title">Videos</div>
                 <div className="video-item">

@@ -1,0 +1,15 @@
+.exerciseDetailsContainer {
+    .exerciseTitle {
+    }
+
+    .thumbnailContainer {
+        width: 30vw;
+        height: 30vw;
+        overflow: hidden;
+
+        .thumbnailImage {
+            height: 30vw;
+            width: 30vw;
+        }
+    }
+}
