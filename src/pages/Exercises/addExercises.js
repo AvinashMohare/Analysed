@@ -10,6 +10,8 @@ const AddExercises = ({ onBackClick }) => {
     const [description, setDescription] = useState("");
     const [musclesInvolved, setMusclesInvolved] = useState("");
     const [caloriesBurnPerMin, setCaloriesBurnPerMin] = useState("");
+    const [duration, setDuration] = useState("");
+    const [reps, setReps] = useState("");
 
     const handleVideoChange = (e) => {
         const file = e.target.files[0];
@@ -48,6 +50,8 @@ const AddExercises = ({ onBackClick }) => {
             description,
             musclesInvolved,
             caloriesBurnPerMin,
+            duration,
+            reps,
             userId: auth?.currentUser?.uid,
             // You can get the current user ID using Firebase Auth or any other authentication method you use
         };
@@ -102,6 +106,21 @@ const AddExercises = ({ onBackClick }) => {
                 onChange={(e) => setCaloriesBurnPerMin(e.target.value)}
                 placeholder="Calories Burn Per Minute"
             />
+
+            <input
+                type="text"
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
+                placeholder="Duration"
+            />
+
+            <input
+                type="text"
+                value={reps}
+                onChange={(e) => setReps(e.target.value)}
+                placeholder="Reps"
+            />
+
             <button type="submit">Submit</button>
             <button onClick={handleBackClick}>Back to Exercises</button>
         </form>

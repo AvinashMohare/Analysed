@@ -19,6 +19,10 @@
 import React from "react";
 import classes from "./ExerciseDetails.module.scss";
 
+import { FiClock } from "react-icons/fi";
+import { ImLoop } from "react-icons/im";
+import { AiOutlineFire } from "react-icons/ai";
+
 const ExerciseDetails = ({ exercise, onClose }) => {
     const musclesData = exercise.musclesInvolved;
     // Process the data and split into individual card components
@@ -27,7 +31,8 @@ const ExerciseDetails = ({ exercise, onClose }) => {
     return (
         <div className={classes.exerciseDetailsContainer}>
             <div className={classes.exerciseTitle}>
-                <p>{exercise.title}</p>
+                {/* <p>{exercise.title}</p> */}
+                <p>Wall Angels</p>
             </div>
 
             <div className={classes.container}>
@@ -39,6 +44,44 @@ const ExerciseDetails = ({ exercise, onClose }) => {
                             alt="Exercise Thumbnail"
                         />
                     </div>
+
+                    <div className={classes.aboutContainer}>
+                        <div className={classes.aboutTitle}>
+                            <p>About</p>
+                        </div>
+                        <div className={classes.info}>
+                            <div className={classes.items}>
+                                <div className={classes.logo}>
+                                    <FiClock className={classes.icons} />
+                                </div>
+                                <p>{exercise.duration}</p>
+                            </div>
+                            <div className={classes.items}>
+                                <div className={classes.logo}>
+                                    <ImLoop
+                                        className={classes.icons}
+                                        color="#59B24F"
+                                    />
+                                </div>
+                                <p>{exercise.reps}</p>
+                            </div>
+                            <div className={classes.items}>
+                                <div className={classes.logo}>
+                                    <AiOutlineFire
+                                        className={classes.icons}
+                                        color="#FCBD1B"
+                                    />
+                                </div>
+                                <p>{exercise.caloriesBurnPerMin}</p>
+                            </div>
+                        </div>
+                        {/* <div className="about-content">
+                            Lorem ipsum dolor sit amet consectetur. Tellus
+                            consequat dui semper turpis justo egestas. Blandit
+                            sit egestas egestas enim amet viverra interdum.
+                            Cursus sodales tincidunt diam tortor sem quisque.
+                        </div> */}
+                    </div>
                 </div>
 
                 <div className={classes.right}>
@@ -48,12 +91,7 @@ const ExerciseDetails = ({ exercise, onClose }) => {
                         </div>
 
                         <div className={classes.descriptionContent}>
-                            <p>
-                                Wall angels are a great way to warm up your
-                                shoulders and upper back before a workout, or to
-                                help relieve tension and tightness in those
-                                areas after a long day at work.
-                            </p>
+                            <p>{exercise.description}</p>
                         </div>
                     </div>
 
@@ -82,15 +120,7 @@ const ExerciseDetails = ({ exercise, onClose }) => {
                         </div>
                     </div>
 
-                    <div className="about-container">
-                        <div className="about-title">About</div>
-                        <div className="about-content">
-                            Lorem ipsum dolor sit amet consectetur. Tellus
-                            consequat dui semper turpis justo egestas. Blandit
-                            sit egestas egestas enim amet viverra interdum.
-                            Cursus sodales tincidunt diam tortor sem quisque.
-                        </div>
-                    </div>
+                    <button onClick={onClose}>Close</button>
                 </div>
             </div>
         </div>

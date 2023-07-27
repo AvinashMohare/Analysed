@@ -1,30 +1,3 @@
-// import React, { useState } from "react";
-// import ExercisesPage from "./exercisesPage";
-// import AddExercises from "./addExercises";
-
-// const MainExercises = () => {
-//     const [showAddExercises, setShowAddExercises] = useState(false);
-
-//     const handleAddExercisesClick = () => {
-//         setShowAddExercises(true);
-//     };
-//     const handleBackClick = () => {
-//         setShowAddExercises(false);
-//     };
-
-//     return (
-//         <div>
-//             {showAddExercises ? (
-//                 <AddExercises onBackClick={handleBackClick} />
-//             ) : (
-//                 <ExercisesPage onAddExercisesClick={handleAddExercisesClick} />
-//             )}
-//         </div>
-//     );
-// };
-
-// export default MainExercises;
-
 import React, { useState } from "react";
 import ExercisesPage from "./exercisesPage";
 import AddExercises from "./addExercises";

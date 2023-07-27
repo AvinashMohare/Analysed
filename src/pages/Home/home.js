@@ -30,7 +30,7 @@ function Home(props) {
 
     //For sidebar
     const [selectedOption, setSelectedOption] = useState(0);
-    //Map of options to their corresponding components
+    // Map of options to their corresponding components
     const componentMap = {
         0: <Dashboard />,
         1: <>Clients</>,
@@ -73,6 +73,8 @@ function Home(props) {
                     <div className={classes.bottom}>
                         {selectedOption !== null &&
                             componentMap[selectedOption]}
+
+                        {/* <ExerciseDetails /> */}
                     </div>
                 </div>
             </div>
