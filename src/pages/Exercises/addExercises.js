@@ -68,6 +68,9 @@ const AddExercises = ({ onBackClick }) => {
             setTitle("");
             setDescription("");
             setMusclesInvolved("");
+            setCaloriesBurnPerMin("");
+            setDuration("");
+            setReps("");
         } catch (error) {
             console.error("Error adding exercise: ", error);
         }
@@ -80,8 +83,15 @@ const AddExercises = ({ onBackClick }) => {
 
     return (
         <form onSubmit={handleSubmit}>
+            <label>Video</label>
             <input type="file" onChange={handleVideoChange} />
-            <input type="file" onChange={handleThumbnailChange} />
+
+            <label>Thumbnail</label>
+            <input
+                type="file"
+                onChange={handleThumbnailChange}
+                placeholder="Thumbnail"
+            />
             <input
                 type="text"
                 value={title}

@@ -22,17 +22,21 @@ import classes from "./ExerciseDetails.module.scss";
 import { FiClock } from "react-icons/fi";
 import { ImLoop } from "react-icons/im";
 import { AiOutlineFire } from "react-icons/ai";
+import { BiSolidPencil } from "react-icons/bi";
 
 const ExerciseDetails = ({ exercise, onClose }) => {
     const musclesData = exercise.musclesInvolved;
     // Process the data and split into individual card components
     const cardsArray = musclesData.split(",");
 
+    //Using this I will update the changes
+    console.log(exercise.id);
+    //
+
     return (
         <div className={classes.exerciseDetailsContainer}>
             <div className={classes.exerciseTitle}>
-                {/* <p>{exercise.title}</p> */}
-                <p>Wall Angels</p>
+                <p>{exercise.title}</p>
             </div>
 
             <div className={classes.container}>
@@ -55,6 +59,7 @@ const ExerciseDetails = ({ exercise, onClose }) => {
                                     <FiClock className={classes.icons} />
                                 </div>
                                 <p>{exercise.duration}</p>
+                                <p>Mins</p>
                             </div>
                             <div className={classes.items}>
                                 <div className={classes.logo}>
@@ -64,6 +69,7 @@ const ExerciseDetails = ({ exercise, onClose }) => {
                                     />
                                 </div>
                                 <p>{exercise.reps}</p>
+                                <p>Reps</p>
                             </div>
                             <div className={classes.items}>
                                 <div className={classes.logo}>
@@ -73,14 +79,9 @@ const ExerciseDetails = ({ exercise, onClose }) => {
                                     />
                                 </div>
                                 <p>{exercise.caloriesBurnPerMin}</p>
+                                <p>Calories</p>
                             </div>
                         </div>
-                        {/* <div className="about-content">
-                            Lorem ipsum dolor sit amet consectetur. Tellus
-                            consequat dui semper turpis justo egestas. Blandit
-                            sit egestas egestas enim amet viverra interdum.
-                            Cursus sodales tincidunt diam tortor sem quisque.
-                        </div> */}
                     </div>
                 </div>
 
@@ -88,6 +89,10 @@ const ExerciseDetails = ({ exercise, onClose }) => {
                     <div className={classes.descriptionContainer}>
                         <div className={classes.descriptionTitle}>
                             <p>Description</p>
+
+                            <div>
+                                <BiSolidPencil className={classes.icon} />
+                            </div>
                         </div>
 
                         <div className={classes.descriptionContent}>

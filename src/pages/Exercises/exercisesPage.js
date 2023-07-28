@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import styles from "./ExercisesPage.module.scss"; // Replace with your CSS/SCSS module for styling
 import { HiOutlineViewGrid, HiOutlineViewList } from "react-icons/hi";
 import ExerciseFetcher from "../../components/data_fetch/exerciseFetcher";
-import { deleteDoc, doc } from "firebase/firestore";
-import { db } from "../../firebase";
+// import { deleteDoc, doc } from "firebase/firestore";
+// import { db } from "../../firebase";
+import { BiDotsVerticalRounded } from "react-icons/bi";
 
 const ExercisesPage = ({ onAddExercisesClick, onExerciseCardClick }) => {
     const [exercises, setExercises] = useState([]);
@@ -17,22 +18,22 @@ const ExercisesPage = ({ onAddExercisesClick, onExerciseCardClick }) => {
         setIsGrid(!isGrid);
     };
 
-    const handleDeleteExercise = async (exerciseId) => {
-        try {
-            // Construct the full reference to the exercise document
-            const exerciseRef = doc(db, "exercises", exerciseId);
+    // const handleDeleteExercise = async (exerciseId) => {
+    //     try {
+    //         // Construct the full reference to the exercise document
+    //         const exerciseRef = doc(db, "exercises", exerciseId);
 
-            // Delete the exercise document from Firebase Firestore
-            await deleteDoc(exerciseRef);
+    //         // Delete the exercise document from Firebase Firestore
+    //         await deleteDoc(exerciseRef);
 
-            // Update the local state to remove the deleted exercise
-            setExercises((prevExercises) =>
-                prevExercises.filter((exercise) => exercise.id !== exerciseId)
-            );
-        } catch (error) {
-            console.error("Error deleting exercise: ", error);
-        }
-    };
+    //         // Update the local state to remove the deleted exercise
+    //         setExercises((prevExercises) =>
+    //             prevExercises.filter((exercise) => exercise.id !== exerciseId)
+    //         );
+    //     } catch (error) {
+    //         console.error("Error deleting exercise: ", error);
+    //     }
+    // };
 
     return (
         <div className={styles.rootExercises}>
@@ -79,10 +80,17 @@ const ExercisesPage = ({ onAddExercisesClick, onExerciseCardClick }) => {
                                 />
                             </div>
                             <div className={styles.textContainer}>
-                                <h3>{exercise.title}</h3>
+                                <div className={styles.titleBar}>
+                                    <h3>{exercise.title}</h3>
+                                    <div className={styles.icon}>
+                                        <BiDotsVerticalRounded
+                                            className={styles.dots}
+                                        />
+                                    </div>
+                                </div>
                                 <p>{exercise.description}</p>
                             </div>
-                            <button
+                            {/* <button
                                 className={styles.deleteButton}
                                 onClick={(e) => {
                                     e.stopPropagation(); // Prevent card click event from firing
@@ -90,7 +98,7 @@ const ExercisesPage = ({ onAddExercisesClick, onExerciseCardClick }) => {
                                 }}
                             >
                                 Delete
-                            </button>
+                            </button> */}
                         </div>
                     ))}
                 </div>
