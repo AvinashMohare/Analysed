@@ -22,7 +22,7 @@ function Signup() {
     const [experience, setExperience] = useState("");
 
     //ref for pushing data
-    const userDataRef = collection(db, "userdata");
+    const userDataRef = collection(db, "physiotherapist");
 
     //For authentication purpose
     const [email, setEmail] = useState("");
@@ -45,6 +45,16 @@ function Signup() {
 
         try {
             await createUserWithEmailAndPassword(auth, email, password);
+
+            //Creating a referal code for the physiotherapist
+            const userId = auth?.currentUser?.uid;
+            let code = "";
+
+            for (let i = 0; i < 6; i++) {
+                const randomIndex = Math.floor(Math.random() * userId.length);
+                code += userId.charAt(randomIndex);
+            }
+
             await addDoc(userDataRef, {
                 name: name,
                 username: username,
@@ -54,8 +64,13 @@ function Signup() {
                 bio: bio,
                 email: email,
                 experience: experience,
-                userId: auth?.currentUser?.uid,
+                physiotherapistId: auth?.currentUser?.uid,
+                referralCode: code,
+                profileImageURL:
+                    "https://img.freepik.com/free-photo/doctor-with-his-arms-crossed-white-background_1368-5790.jpg?size=626&ext=jpg&ga=GA1.2.1991124506.1689017917&semt=sph",
             });
+
+            console.log(code);
 
             navigate("/home");
         } catch (err) {

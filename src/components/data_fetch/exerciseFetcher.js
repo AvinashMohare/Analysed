@@ -13,6 +13,7 @@ const ExerciseFetcher = ({ onExercisesFetched }) => {
             where("userId", "==", "VGGH7G9rXic6NiKlbvJXfrgtoRq1")
         );
 
+        console.log("Exercise Fetcher");
         // Fetch the documents that match the query
         const fetchExercises = async () => {
             try {
@@ -34,7 +35,7 @@ const ExerciseFetcher = ({ onExercisesFetched }) => {
 
         // Call the fetchExercises function to retrieve data
         fetchExercises();
-    }, [onExercisesFetched]);
+    }, []);
 
     return null; // This component doesn't render anything visible
 };

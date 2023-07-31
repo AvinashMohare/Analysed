@@ -8,20 +8,18 @@ const Profile = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+            console.log("Profile");
             try {
                 // Get the signed-in user's userID
                 const userId = auth.currentUser?.uid;
 
-                // If the user is not signed in, do nothing
-                if (!userId) return;
-
                 // Create a reference to the Firestore collection 'userdata'
-                const userDataRef = collection(db, "userdata");
+                const userDataRef = collection(db, "physiotherapist");
 
                 // Create a query to retrieve data where 'userId' matches the signed-in user's userID
                 const userQuery = query(
                     userDataRef,
-                    where("userId", "==", userId)
+                    where("physiotherapistId", "==", userId)
                 );
 
                 // Set up a real-time listener for the query
@@ -42,11 +40,14 @@ const Profile = () => {
         fetchData();
     }, []);
 
+    const defaultImage =
+        "https://media.istockphoto.com/id/1337144146/vector/default-avatar-profile-icon-vector.jpg?s=612x612&w=0&k=20&c=BIbFwuv7FxTWvh5S3vB6bkT0Qv8Vn8N5Ffseq84ClGI=";
+
     return (
         <div className={classes.rootProfile}>
             <div className={classes.userPicture}>
                 <img
-                    src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                    src={userData ? userData.profileImageURL : defaultImage}
                     alt="profile"
                 ></img>
             </div>

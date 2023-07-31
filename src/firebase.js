@@ -4,13 +4,13 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCEFBoNUCsoOkmRFFMHx1DL008Bxc-i8w0",
-    authDomain: "physiotherapyweb.firebaseapp.com",
-    projectId: "physiotherapyweb",
-    storageBucket: "physiotherapyweb.appspot.com",
-    messagingSenderId: "219660466167",
-    appId: "1:219660466167:web:a264d1891a2c3d6814e0f2",
-    measurementId: "G-CVNGKFMY4S",
+    apiKey: "AIzaSyBI37OFPHWswmAhKKLY1IUk-ZYerGh71j4",
+    authDomain: "physiotherapy-eb4bb.firebaseapp.com",
+    projectId: "physiotherapy-eb4bb",
+    storageBucket: "physiotherapy-eb4bb.appspot.com",
+    messagingSenderId: "337785625667",
+    appId: "1:337785625667:web:cc2807e7b129b30f2488f6",
+    measurementId: "G-2DD6LR514D",
 };
 
 const app = initializeApp(firebaseConfig);
