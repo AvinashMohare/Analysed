@@ -10,7 +10,7 @@ const ExerciseFetcher = ({ onExercisesFetched }) => {
         const q = query(
             collection(db, "exercises"),
             // where("userId", "==", auth?.currentUser?.uid)
-            where("userId", "==", "VGGH7G9rXic6NiKlbvJXfrgtoRq1")
+            where("userId", "==", "T7xHEEXnHWZCNA6fqPHoMeVXwAt2")
         );
 
         console.log("Exercise Fetcher");
