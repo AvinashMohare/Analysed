@@ -59,28 +59,32 @@ const ClientList = () => {
             </div>
 
             <table>
-                <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Gender</th>
-                    <th>Phone no</th>
-                    <th>Exercises</th>
-                </tr>
-                {data.map((val, key) => {
-                    return (
-                        <tr key={key}>
-                            <td className={classes.profilePic}>
-                                <img src={val.user} alt={val.name}></img>
-                            </td>
-                            <td>{val.name}</td>
-                            <td>{val.age}</td>
-                            <td>{val.gender}</td>
-                            <td>{val.phone}</td>
-                            <td>{val.exercise}</td>
-                        </tr>
-                    );
-                })}
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Phone no</th>
+                        <th>Exercises</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {data.map((val, key) => {
+                        return (
+                            <tr key={key}>
+                                <td className={classes.profilePic}>
+                                    <img src={val.user} alt={val.name} />
+                                </td>
+                                <td>{val.name}</td>
+                                <td>{val.age}</td>
+                                <td>{val.gender}</td>
+                                <td>{val.phone}</td>
+                                <td>{val.exercise}</td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
             </table>
         </div>
     );

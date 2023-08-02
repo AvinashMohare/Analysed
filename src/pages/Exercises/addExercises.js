@@ -52,6 +52,7 @@ const AddExercises = ({ onBackClick }) => {
             caloriesBurnPerMin,
             duration,
             reps,
+            assignedTo: [],
             userId: auth?.currentUser?.uid,
             // You can get the current user ID using Firebase Auth or any other authentication method you use
         };

@@ -11,6 +11,7 @@ import MainExercises from "../Exercises/mainExercises";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
+import MainClients from "../Clients/mainClients";
 
 function Home(props) {
     //For signout option
@@ -33,7 +34,11 @@ function Home(props) {
     // Map of options to their corresponding components
     const componentMap = {
         0: <Dashboard />,
-        1: <>Clients</>,
+        1: (
+            <>
+                <MainClients />
+            </>
+        ),
         2: <MainExercises />,
         3: <>Chat</>,
         4: <>Settings</>,

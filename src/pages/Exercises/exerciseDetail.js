@@ -16,13 +16,17 @@
 
 // export default ExerciseDetails;
 
-import React from "react";
+// import React, { useState } from "react";
 import classes from "./ExerciseDetails.module.scss";
 
 import { FiClock } from "react-icons/fi";
 import { ImLoop } from "react-icons/im";
 import { AiOutlineFire } from "react-icons/ai";
 import { BiSolidPencil } from "react-icons/bi";
+
+// import { ref, doc } from "firebase/storage";
+// import { db } from "../../firebase";
+// import { updateDoc } from "firebase/firestore";
 
 const ExerciseDetails = ({ exercise, onClose }) => {
     const musclesData = exercise.musclesInvolved;
@@ -31,7 +35,8 @@ const ExerciseDetails = ({ exercise, onClose }) => {
 
     //Using this I will update the changes
     console.log(exercise.id);
-    //
+
+    //Update the exercise using the exercise id
 
     return (
         <div className={classes.exerciseDetailsContainer}>
@@ -89,7 +94,6 @@ const ExerciseDetails = ({ exercise, onClose }) => {
                     <div className={classes.descriptionContainer}>
                         <div className={classes.descriptionTitle}>
                             <p>Description</p>
-
                             <div>
                                 <BiSolidPencil className={classes.icon} />
                             </div>
