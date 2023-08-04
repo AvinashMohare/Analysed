@@ -12,6 +12,8 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import MainClients from "../Clients/mainClients";
+import { AuthProvider } from "../../components/data_fetch/authProvider";
+import ClientsRequest from "../ClientsRequest/clientsRequest";
 
 function Home(props) {
     //For signout option
@@ -34,14 +36,12 @@ function Home(props) {
     // Map of options to their corresponding components
     const componentMap = {
         0: <Dashboard />,
-        1: (
-            <>
-                <MainClients />
-            </>
-        ),
+        1: <MainClients />,
         2: <MainExercises />,
         3: <>Chat</>,
-        4: <>Settings</>,
+        4: <ClientsRequest/>,
+        5: <>Settings</>,
+
     };
 
     const handleOptionClick = (index) => {
@@ -53,7 +53,9 @@ function Home(props) {
             <div className={classes.root}>
                 <div className={classes.left}>
                     <div className={classes.profile}>
-                        <Profile />
+                        <AuthProvider>
+                            <Profile />
+                        </AuthProvider>
                     </div>
 
                     <div className={classes.sideBar}>
@@ -78,8 +80,6 @@ function Home(props) {
                     <div className={classes.bottom}>
                         {selectedOption !== null &&
                             componentMap[selectedOption]}
-
-                        {/* <ExerciseDetails /> */}
                     </div>
                 </div>
             </div>

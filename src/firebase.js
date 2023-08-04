@@ -23,3 +23,27 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 export const storage = getStorage(app);
+
+// Check authentication state on page load
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        // User is signed in.
+        // Update UI and manage app state.
+        // console.log("User is signed in:", user);
+    } else {
+        // No user is signed in.
+        // Update UI and manage app state.
+        console.log("No user is signed in.");
+    }
+});
+
+// Call this function to initialize your app's logic and UI interactions
+function initApp() {
+    // Here, you can add your app's logic and UI interactions.
+    // For example, you can set up event listeners, fetch data from Firestore, etc.
+}
+
+// Call the function to initialize your app when the page loads
+window.onload = function () {
+    initApp();
+};

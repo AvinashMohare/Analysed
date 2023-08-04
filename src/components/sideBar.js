@@ -59,6 +59,15 @@ const SideBar = ({ handleOptionClick }) => {
                     color={selectedOption === 4 ? "#0D30AC" : "white"}
                 />
             ),
+            text: "Requests",
+        },
+        {
+            icon: (
+                <IoMdSettings
+                    size={35}
+                    color={selectedOption === 5 ? "#0D30AC" : "white"}
+                />
+            ),
             text: "Settings",
         },
     ];

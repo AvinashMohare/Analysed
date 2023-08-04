@@ -3,7 +3,7 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { db, auth } from "../../firebase";
 import { useAuth } from "./authProvider";
 
-const ClientFetcher = ({ onClientsFetched }) => {
+const ClientRequestFetcher = ({ onClientsFetched }) => {
     const user = useAuth();
     const [userData, setUserData] = useState(null);
 
@@ -35,7 +35,7 @@ const ClientFetcher = ({ onClientsFetched }) => {
                         "==",
                         physiotherapistData.referralCode
                     ),
-                    where("verified", "==", true)
+                    where("verified", "==", false)
                 );
 
                 const querySnapshot = await getDocs(clientsQuery);
@@ -57,4 +57,4 @@ const ClientFetcher = ({ onClientsFetched }) => {
     return null;
 };
 
-export default ClientFetcher;
+export default ClientRequestFetcher;

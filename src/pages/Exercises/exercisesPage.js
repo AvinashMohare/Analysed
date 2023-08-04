@@ -5,6 +5,7 @@ import ExerciseFetcher from "../../components/data_fetch/exerciseFetcher";
 // import { deleteDoc, doc } from "firebase/firestore";
 // import { db } from "../../firebase";
 import { BiDotsVerticalRounded } from "react-icons/bi";
+import { AuthProvider } from "../../components/data_fetch/authProvider";
 
 const ExercisesPage = ({ onAddExercisesClick, onExerciseCardClick }) => {
     const [exercises, setExercises] = useState([]);

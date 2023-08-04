@@ -1,5 +1,6 @@
 import classes from "../styles/Dashboard.module.scss";
 import ClientList from "./clientList";
+import ExerciseFetcher from "./data_fetch/exerciseFetcher";
 import Exercises from "./exercises";
 import WelcomeCard from "./welcomeCard";
 

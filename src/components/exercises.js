@@ -2,6 +2,7 @@ import classes from "../styles/Exercises.module.scss";
 import { AiOutlineFire } from "react-icons/ai";
 import ExerciseFetcher from "../components/data_fetch/exerciseFetcher";
 import { useState } from "react";
+import { AuthProvider } from "./data_fetch/authProvider";
 
 const Exercises = () => {
     const [exercises, setExercises] = useState([]);
@@ -12,6 +13,7 @@ const Exercises = () => {
     return (
         <div className={classes.rootExercises}>
             <ExerciseFetcher onExercisesFetched={handleExercisesFetched} />
+
             <div className={classes.heading}>
                 <span>All Exercises</span>
             </div>

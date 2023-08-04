@@ -1,137 +1,3 @@
-// import React, { useEffect, useState } from "react";
-// import {
-//     collection,
-//     query,
-//     where,
-//     getDocs,
-//     getDoc,
-//     updateDoc,
-//     arrayUnion,
-//     arrayRemove,
-//     doc,
-// } from "firebase/firestore";
-// import { db } from "../../firebase";
-// import ExerciseFetcher from "../../components/data_fetch/exerciseFetcher"; // Adjust the path
-
-// const ClientDetails = ({ client, onBackToList }) => {
-//     const [assignedExercises, setAssignedExercises] = useState([]);
-//     const [exercises, setExercises] = useState([]);
-
-//     const handleExercisesFetched = (fetchedExercises) => {
-//         setExercises(fetchedExercises);
-//     };
-
-//     useEffect(() => {
-//         console.log("Inside the Client Details");
-//         const fetchAssignedExercises = async () => {
-//             try {
-//                 const exercisesRef = collection(db, "exercises");
-//                 const q = query(
-//                     exercisesRef,
-//                     where("assignedTo", "array-contains", client.userID)
-//                 );
-//                 const querySnapshot = await getDocs(q);
-
-//                 const assignedExercisesData = querySnapshot.docs.map((doc) =>
-//                     doc.data()
-//                 );
-//                 setAssignedExercises(assignedExercisesData);
-//             } catch (error) {
-//                 console.error("Error fetching assigned exercises:", error);
-//             }
-//         };
-
-//         fetchAssignedExercises();
-//     }, [client.userID]);
-
-//     const handleUnassignExercise = async (exerciseId) => {
-//         console.log("Exercise ID to unassign:", exerciseId);
-
-//         try {
-//             const exerciseRef = doc(db, "exercises", exerciseId);
-//             const exerciseSnapshot = await getDoc(exerciseRef);
-
-//             if (exerciseSnapshot.exists()) {
-//                 const exerciseData = exerciseSnapshot.data();
-//                 if (
-//                     exerciseData.assignedTo &&
-//                     exerciseData.assignedTo.includes(client.userID)
-//                 ) {
-//                     const newAssignedTo = exerciseData.assignedTo.filter(
-//                         (id) => id !== client.userID
-//                     );
-//                     await updateDoc(exerciseRef, { assignedTo: newAssignedTo });
-//                     console.log("Exercise unassigned successfully!");
-//                 } else {
-//                     console.log("Exercise is not assigned to the client.");
-//                 }
-//             } else {
-//                 console.log("Exercise does not exist.");
-//             }
-//         } catch (error) {
-//             console.error("Error unassigning exercise:", error);
-//         }
-//     };
-
-//     const handleAssignExercise = async (exerciseId) => {
-//         console.log("Hii", exerciseId);
-//         try {
-//             const exerciseRef = doc(db, "exercises", exerciseId);
-//             await updateDoc(exerciseRef, {
-//                 assignedTo: arrayUnion(client.userID),
-//             });
-//             console.log("Exercise assigned successfully!");
-//         } catch (error) {
-//             console.error("Error assigning exercise:", error);
-//         }
-//     };
-
-//     return (
-//         <div>
-//             <h2>Detailed View for {client.userName}</h2>
-//             {/* ... other client details ... */}
-
-//             {/* Display assigned exercises */}
-//             <h3>Assigned Exercises</h3>
-//             <div>
-//                 {assignedExercises.map((exercise) => (
-//                     <li key={exercise.id}>
-//                         {exercise.title}{" "}
-//                         <button
-//                             onClick={() => handleUnassignExercise(exercise.id)}
-//                         >
-//                             Unassign
-//                         </button>
-//                     </li>
-//                 ))}
-//             </div>
-
-//             {/* Display all exercises using ExerciseFetcher */}
-//             <h3>All Exercises</h3>
-//             <ExerciseFetcher onExercisesFetched={handleExercisesFetched} />
-//             <div>
-//                 {exercises.map((exercise) => (
-//                     <div key={exercise.id}>
-//                         {exercise.title}{" "}
-//                         <button
-//                             onClick={() => handleAssignExercise(exercise.id)}
-//                         >
-//                             Assign
-//                         </button>
-//                     </div>
-//                 ))}
-//             </div>
-
-//             {/* Back button */}
-//             <button onClick={onBackToList}>Back to Client List</button>
-//         </div>
-//     );
-// };
-
-// export default ClientDetails;
-
-//-------------------
-
 import React, { useEffect, useState } from "react";
 import {
     collection,
@@ -145,6 +11,10 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import ExerciseFetcher from "../../components/data_fetch/exerciseFetcher";
+import classes from "./ClientDetails.module.scss";
+
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { AuthProvider } from "../../components/data_fetch/authProvider";
 
 const ClientDetails = ({ client, onBackToList }) => {
     const [assignedExercises, setAssignedExercises] = useState([]);
@@ -154,33 +24,35 @@ const ClientDetails = ({ client, onBackToList }) => {
         setExercises(fetchedExercises);
     };
 
+    //Fetching assigned exercises
+    const fetchAssignedExercises = async () => {
+        try {
+            const exercisesRef = collection(db, "exercises");
+            const q = query(
+                exercisesRef,
+                where("assignedTo", "array-contains", client.userID)
+            );
+            const querySnapshot = await getDocs(q);
+
+            const assignedExercisesData = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setAssignedExercises(assignedExercisesData);
+        } catch (error) {
+            console.error("Error fetching assigned exercises:", error);
+        }
+    };
+
     useEffect(() => {
         console.log("Inside the Client Details");
-        const fetchAssignedExercises = async () => {
-            try {
-                const exercisesRef = collection(db, "exercises");
-                const q = query(
-                    exercisesRef,
-                    where("assignedTo", "array-contains", client.userID)
-                );
-                const querySnapshot = await getDocs(q);
-
-                const assignedExercisesData = querySnapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    ...doc.data(),
-                }));
-                setAssignedExercises(assignedExercisesData);
-            } catch (error) {
-                console.error("Error fetching assigned exercises:", error);
-            }
-        };
 
         fetchAssignedExercises();
     }, [client.userID]);
 
+    //To Unassign an exercise
     const handleUnassignExercise = async (exerciseId) => {
-        console.log("Exercise ID to unassign:", exerciseId);
-
+        // console.log("Exercise ID to unassign:", exerciseId);
         try {
             const exerciseRef = doc(db, "exercises", exerciseId);
             const exerciseSnapshot = await getDoc(exerciseRef);
@@ -202,11 +74,14 @@ const ClientDetails = ({ client, onBackToList }) => {
             } else {
                 console.log("Exercise does not exist.");
             }
+
+            fetchAssignedExercises();
         } catch (error) {
             console.error("Error unassigning exercise:", error);
         }
     };
 
+    //To Assign an exercise
     const handleAssignExercise = async (exerciseId) => {
         try {
             const exerciseRef = doc(db, "exercises", exerciseId);
@@ -214,51 +89,77 @@ const ClientDetails = ({ client, onBackToList }) => {
                 assignedTo: arrayUnion(client.userID),
             });
             console.log("Exercise assigned successfully!");
+            fetchAssignedExercises();
         } catch (error) {
             console.error("Error assigning exercise:", error);
         }
     };
 
     return (
-        <div>
-            <h2>Detailed View for {client.userName}</h2>
-            {/* ... other client details ... */}
+        <div className={classes.rootClientDetails}>
+            <div className={classes.header}>
+                <div className={classes.userImage}>
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTte_W3r44Rc7MYnXPQZLP-z3pfAJCKJuz1GA&usqp=CAU"
+                        alt={client.userName}
+                    />
+                </div>
 
-            {/* Display assigned exercises */}
-            <h3>Assigned Exercises</h3>
-            <div>
-                {assignedExercises.map((exercise) => (
-                    <li key={exercise.id}>
-                        {exercise.title}
-
-                        <button
-                            onClick={() => handleUnassignExercise(exercise.id)}
-                        >
-                            Unassign
-                        </button>
-                    </li>
-                ))}
+                <div className={classes.userName}>
+                    <p>{client.userName}</p>
+                </div>
             </div>
 
-            {/* Display all exercises using ExerciseFetcher */}
-            <h3>All Exercises</h3>
-            <ExerciseFetcher onExercisesFetched={handleExercisesFetched} />
-            <div>
-                {exercises.map((exercise) => (
-                    <div key={exercise.id}>
-                        {exercise.title}
-
-                        <button
-                            onClick={() => handleAssignExercise(exercise.id)}
-                        >
-                            Assign
-                        </button>
+            <div className={classes.info}>
+                <div className={classes.assignedExercises}>
+                    <div className={classes.heading}>
+                        <p>Assign Exercises</p>
                     </div>
-                ))}
-            </div>
 
-            {/* Back button */}
-            <button onClick={onBackToList}>Back to Client List</button>
+                    <div className={classes.cards}>
+                        {assignedExercises.map((exercise) => (
+                            <div className={classes.exercise} key={exercise.id}>
+                                <div className={classes.exerciseName}>
+                                    <p>{exercise.title}</p>
+                                </div>
+
+                                <div className={classes.delete}>
+                                    <RiDeleteBin6Line
+                                        className={classes.icon}
+                                        onClick={() =>
+                                            handleUnassignExercise(exercise.id)
+                                        }
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Display all exercises using ExerciseFetcher */}
+                <h3>All Exercises</h3>
+
+                <ExerciseFetcher onExercisesFetched={handleExercisesFetched} />
+
+                <div>
+                    {exercises.map((exercise) => (
+                        <div key={exercise.id}>
+                            {exercise.title}
+
+                            <button
+                                onClick={() =>
+                                    handleAssignExercise(exercise.id)
+                                }
+                            >
+                                Assign
+                            </button>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Back button */}
+                <button onClick={onBackToList}>Back to Client List</button>
+            </div>
         </div>
     );
 };

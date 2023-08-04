@@ -7,16 +7,17 @@ const ExerciseFetcher = ({ onExercisesFetched }) => {
 
     useEffect(() => {
         // Define the query to retrieve exercises for a specific user
-        const q = query(
-            collection(db, "exercises"),
-            // where("userId", "==", auth?.currentUser?.uid)
-            where("userId", "==", "T7xHEEXnHWZCNA6fqPHoMeVXwAt2")
-        );
 
         console.log("Exercise Fetcher");
         // Fetch the documents that match the query
         const fetchExercises = async () => {
             try {
+                const q = query(
+                    collection(db, "exercises"),
+                    where("userId", "==", auth?.currentUser?.uid)
+                    // where("userId", "==", "T7xHEEXnHWZCNA6fqPHoMeVXwAt2")
+                );
+
                 const querySnapshot = await getDocs(q);
 
                 // Extract the data from the query snapshot
@@ -37,7 +38,7 @@ const ExerciseFetcher = ({ onExercisesFetched }) => {
         fetchExercises();
     }, []);
 
-    return null; 
+    return null;
 };
 
 export default ExerciseFetcher;
