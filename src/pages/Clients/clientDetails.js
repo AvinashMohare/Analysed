@@ -164,11 +164,6 @@
 
 // export default ClientDetails;
 
-
-
-
-
-
 import React, { useEffect, useState } from "react";
 import {
     collection,
@@ -184,6 +179,7 @@ import { db } from "../../firebase";
 import ExerciseFetcher from "../../components/data_fetch/exerciseFetcher";
 import classes from "./ClientDetails.module.scss";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { IoMdAddCircle } from "react-icons/io";
 
 const ClientDetails = ({ client, onBackToList }) => {
     const [assignedExercises, setAssignedExercises] = useState([]);
@@ -264,6 +260,12 @@ const ClientDetails = ({ client, onBackToList }) => {
         }
     };
 
+    //Show All exercises
+    const [showAllExercises, setShowAllExercises] = useState(false);
+    const allExercisesHandler = () => {
+        setShowAllExercises(!showAllExercises);
+    };
+
     return (
         <div className={classes.rootClientDetails}>
             <div className={classes.header}>
@@ -303,28 +305,47 @@ const ClientDetails = ({ client, onBackToList }) => {
                             </div>
                         ))}
                     </div>
-                </div>
 
-                {/* Display all exercises using ExerciseFetcher */}
-                <h3>All Exercises</h3>
-
-                <ExerciseFetcher onExercisesFetched={handleExercisesFetched} />
-
-                <div>
-                    {exercises.map((exercise) => (
-                        <div key={exercise.id}>
-                            {exercise.title}
-
-                            <button
-                                onClick={() =>
-                                    handleAssignExercise(exercise.id)
-                                }
-                            >
-                                Assign
-                            </button>
+                    <div className={classes.footer}>
+                        <div
+                            className={classes.buttons}
+                            onClick={allExercisesHandler}
+                        >
+                            <IoMdAddCircle className={classes.icon} />
                         </div>
-                    ))}
+                    </div>
                 </div>
+
+                {/*Conditionally Display all exercises using ExerciseFetcher*/}
+                {showAllExercises ? (
+                    <>
+                        <h3>All Exercises</h3>
+                        <div>
+                            <button onClick={allExercisesHandler}>Done</button>
+                        </div>
+                        <ExerciseFetcher
+                            onExercisesFetched={handleExercisesFetched}
+                        />
+
+                        <div>
+                            {exercises.map((exercise) => (
+                                <div key={exercise.id}>
+                                    {exercise.title}
+
+                                    <button
+                                        onClick={() =>
+                                            handleAssignExercise(exercise.id)
+                                        }
+                                    >
+                                        Assign
+                                    </button>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                ) : (
+                    <></>
+                )}
 
                 {/* Back button */}
                 <button onClick={onBackToList}>Back to Client List</button>

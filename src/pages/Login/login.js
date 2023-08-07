@@ -1,11 +1,12 @@
+import classes from "./Login.module.scss";
+import login from "../../assets/login.png";
+import { MdEmail } from "react-icons/md";
+import { RiLockPasswordFill } from "react-icons/ri";
+
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-
-import InputControl from "../../components/inputControl";
 import { auth } from "../../firebase";
-
-import styles from "./Login.module.css";
 
 function Login() {
     const navigate = useNavigate();
@@ -35,46 +36,87 @@ function Login() {
                 setErrorMsg(err.message);
             });
     };
+
     return (
-        <div className={styles.container}>
-            <div className={styles.innerBox}>
-                <h1 className={styles.heading}>Login</h1>
+        <div className={classes.rootLogin}>
+            <div className={classes.containerMain}>
+                <div className={classes.header}>
+                    <p>Login</p>
+                </div>
 
-                <InputControl
-                    label="Email"
-                    onChange={(event) =>
-                        setValues((prev) => ({
-                            ...prev,
-                            email: event.target.value,
-                        }))
-                    }
-                    placeholder="Enter email address"
-                />
-                <InputControl
-                    label="Password"
-                    onChange={(event) =>
-                        setValues((prev) => ({
-                            ...prev,
-                            pass: event.target.value,
-                        }))
-                    }
-                    placeholder="Enter Password"
-                />
+                <div className={classes.container}>
+                    <div className={classes.left}>
+                        <div className={classes.email}>
+                            <div className={classes.label}>
+                                <p>Email</p>
+                            </div>
+                            <div className={classes.input}>
+                                <div className={classes.icon}>
+                                    <MdEmail className={classes.emailIcon} />
+                                </div>
 
-                <div className={styles.footer}>
-                    <b className={styles.error}>{errorMsg}</b>
-                    <button
-                        disabled={submitButtonDisabled}
-                        onClick={handleSubmission}
-                    >
-                        Login
-                    </button>
-                    <p>
-                        Already have an account?{" "}
-                        <span>
-                            <Link to="/">Sign up</Link>
-                        </span>
-                    </p>
+                                <div className={classes.inputEmail}>
+                                    <input
+                                        type="email"
+                                        onChange={(event) =>
+                                            setValues((prev) => ({
+                                                ...prev,
+                                                email: event.target.value,
+                                            }))
+                                        }
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={classes.password}>
+                            <div className={classes.label}>
+                                <p className={classes.pass}>Password</p>
+                                <p className={classes.forgot}>
+                                    Forgot Password?
+                                </p>
+                            </div>
+                            <div className={classes.input}>
+                                <div className={classes.icon}>
+                                    <RiLockPasswordFill
+                                        className={classes.passwordIcon}
+                                    />
+                                </div>
+
+                                <div className={classes.inputPassword}>
+                                    <input
+                                        type="password"
+                                        onChange={(event) =>
+                                            setValues((prev) => ({
+                                                ...prev,
+                                                pass: event.target.value,
+                                            }))
+                                        }
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={classes.buttons}>
+                            <div
+                                className={classes.signin}
+                                disabled={submitButtonDisabled}
+                                onClick={handleSubmission}
+                            >
+                                <p>Log In</p>
+                            </div>
+                            <div className={classes.signup}>
+                                <span>
+                                    <Link to="/" className={classes.link}>
+                                        Don't have an account? Register here
+                                    </Link>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={classes.right}>
+                        <img src={login} alt="login"></img>
+                    </div>
                 </div>
             </div>
         </div>

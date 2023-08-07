@@ -42,7 +42,7 @@
             width: fit-content;
             height: fit-content;
 
-            padding: 40px;
+            padding: 30px 20px 15px 20px;
 
             outline: 3px solid #d6e1fe;
             border-radius: 20px;
@@ -107,6 +107,26 @@
                         &:hover {
                             cursor: pointer;
                         }
+                    }
+                }
+            }
+
+            .footer {
+                margin-top: 10vw;
+                width: 100%;
+
+                display: flex;
+                justify-content: flex-end;
+                align-items: flex-end;
+
+                .buttons {
+                    height: 3vw;
+                    width: 3vw;
+
+                    .icon {
+                        height: 100%;
+                        width: 100%;
+                        color: #8db2f9;
                     }
                 }
             }

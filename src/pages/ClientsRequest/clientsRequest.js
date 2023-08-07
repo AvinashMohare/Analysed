@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 
+
 const ClientsRequest = () => {
     const [clients, setClients] = useState([]);
     const [refreshKey, setRefreshKey] = useState(0);
@@ -94,8 +95,18 @@ const ClientsRequest = () => {
                             </div>
 
                             <div className={styles.textContainer}>
-                                <div className={styles.username}>
-                                    <p>{client.userName}</p>
+                                <div className={styles.info}>
+                                    <div className={styles.username}>
+                                        <p>{client.userName}</p>
+                                    </div>
+
+                                    <div className={styles.userEmail}>
+                                        <p>{client.userEmail}</p>
+                                    </div>
+
+                                    <div className={styles.userAccDate}>
+                                        <p>{client.accCreated}</p>
+                                    </div>
                                 </div>
 
                                 <div className={styles.buttons}>
