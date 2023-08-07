@@ -72,8 +72,6 @@ const ClientsRequest = () => {
                 <div className={styles.title}>
                     <p>Requests</p>
                 </div>
-
-                <div className={styles.buttons}>Add New</div>
             </div>
 
             <div className={styles.container}>
@@ -101,20 +99,22 @@ const ClientsRequest = () => {
                                 </div>
 
                                 <div className={styles.buttons}>
-                                    <button
+                                    <div
+                                        className={styles.accept}
                                         onClick={() =>
                                             handleAcceptClient(client.userID)
                                         }
                                     >
-                                        Accept
-                                    </button>
-                                    <button
+                                        <p>Accept</p>
+                                    </div>
+                                    <div
+                                        className={styles.decline}
                                         onClick={() =>
                                             handleDeclineClient(client.userID)
                                         }
                                     >
-                                        Decline
-                                    </button>
+                                        <p>Decline</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,53 +1,18 @@
 import classes from "../styles/ClientList.module.scss";
+import ClientFetcher from "./data_fetch/clientFetcher";
+import { useState } from "react";
 
-const data = [
-    {
-        user: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=8",
 
-        name: "Jenny Wilson",
-        age: 52,
-        gender: "Female",
-        phone: 8088808,
-        exercise: "Exercise",
-    },
-    {
-        user: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=8",
-
-        name: "Jenny Wilson",
-        age: 52,
-        gender: "Female",
-        phone: 8088808,
-        exercise: "Exercise",
-    },
-    {
-        user: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=8",
-
-        name: "Jenny Wilson",
-        age: 52,
-        gender: "Female",
-        phone: 8088808,
-        exercise: "Exercise",
-    },
-    {
-        user: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=8",
-
-        name: "Jenny Wilson",
-        age: 52,
-        gender: "Female",
-        phone: 8088808,
-        exercise: "Exercise",
-    },
-    {
-        user: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=8",
-        name: "Jenny Wilson",
-        age: 52,
-        gender: "Female",
-        phone: 8088808,
-        exercise: "Exercise",
-    },
-];
+const defaultUrl =
+    "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=8";
 
 const ClientList = () => {
+    const [clients, setClients] = useState([]);
+
+    const handleClientsFetched = (fetchedClients) => {
+        setClients(fetchedClients);
+    };
+
     return (
         <div className={classes.rootClientlist}>
             <div className={classes.heading}>
@@ -58,6 +23,9 @@ const ClientList = () => {
                 </div>
             </div>
 
+            {/* Fetch the data of the clients */}
+            <ClientFetcher onClientsFetched={handleClientsFetched} />
+
             <table>
                 <thead>
                     <tr>
@@ -66,21 +34,24 @@ const ClientList = () => {
                         <th>Age</th>
                         <th>Gender</th>
                         <th>Phone no</th>
-                        <th>Exercises</th>
+                        {/* <th>Exercises</th> */}
                     </tr>
                 </thead>
                 <tbody>
-                    {data.map((val, key) => {
+                    {clients.map((client, key) => {
                         return (
-                            <tr key={key}>
+                            <tr key={client.userId}>
                                 <td className={classes.profilePic}>
-                                    <img src={val.user} alt={val.name} />
+                                    <img
+                                        src={defaultUrl}
+                                        alt={client.userName}
+                                    />
                                 </td>
-                                <td>{val.name}</td>
-                                <td>{val.age}</td>
-                                <td>{val.gender}</td>
-                                <td>{val.phone}</td>
-                                <td>{val.exercise}</td>
+                                <td>{client.userName}</td>
+                                <td>{client.userWeight}</td>
+                                <td>{client.userWeight}</td>
+                                <td>{client.phone}</td>
+                                {/* <td>{val.exercise}</td> */}
                             </tr>
                         );
                     })}

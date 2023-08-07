@@ -37,6 +37,10 @@
                     font-weight: 600;
                     color: #e7f3ff;
                     border-radius: 25px;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
 
@@ -49,6 +53,10 @@
                 .icon {
                     height: inherit;
                     width: 100%;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
         }
@@ -137,6 +145,10 @@
                     }
                 }
             }
+
+            &:hover {
+                cursor: pointer;
+            }
         }
         // ........................................................................
         .gridContainer {
@@ -195,6 +207,9 @@
                     }
                 }
             }
+        }
+        &:hover {
+            cursor: pointer;
         }
     }
 }

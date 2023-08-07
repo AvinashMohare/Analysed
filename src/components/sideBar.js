@@ -1,7 +1,7 @@
 import classes from "../styles/SideBar.module.scss";
 import { MdSpaceDashboard, MdChatBubble } from "react-icons/md";
 import { IoMdSettings } from "react-icons/io";
-import { BiRun } from "react-icons/bi";
+import { BiRun, BiMessageAdd } from "react-icons/bi";
 import { FaUserGroup } from "react-icons/fa6";
 
 import { useState } from "react";
@@ -54,7 +54,7 @@ const SideBar = ({ handleOptionClick }) => {
         },
         {
             icon: (
-                <IoMdSettings
+                <BiMessageAdd
                     size={35}
                     color={selectedOption === 4 ? "#0D30AC" : "white"}
                 />
