@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom";
 import MainClients from "../Clients/mainClients";
 import { AuthProvider } from "../../components/data_fetch/authProvider";
 import ClientsRequest from "../ClientsRequest/clientsRequest";
+import Settings from "../Settings/settings";
+import Chats from "../Chat/chats";
 
 function Home(props) {
     //For signout option
@@ -38,10 +40,9 @@ function Home(props) {
         0: <Dashboard />,
         1: <MainClients />,
         2: <MainExercises />,
-        3: <>Chat</>,
-        4: <ClientsRequest/>,
-        5: <>Settings</>,
-
+        3: <Chats />,
+        4: <ClientsRequest />,
+        5: <Settings />,
     };
 
     const handleOptionClick = (index) => {

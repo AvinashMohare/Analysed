@@ -1,0 +1,92 @@
+.rootChats {
+    display: flex;
+    flex-direction: column;
+    .header {
+        width: 95%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        // justify-content: center;
+        margin-bottom: 50px;
+
+        .userImage {
+            width: 3vw;
+            height: 3vw;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+
+        .userName {
+            width: 13%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            p {
+                font-weight: 600;
+                font-size: 2.5rem;
+                color: #0d1dac;
+            }
+        }
+    }
+    .m1 {
+        padding-top: 20px;
+        margin: 0 auto;
+        width: 95%;
+        // background-color: red;
+        display: flex;
+        align-items: center;
+        // justify-content: center;
+        .profilePic {
+            width: 2vw;
+            height: 2vw;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+        .message {
+            background-color: #e4edff;
+            border-radius: 15px;
+            padding: 22px;
+
+            p {
+                font-size: 20px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .m2 {
+        margin-top: 25px;
+        // margin: 0 auto;
+        width: 95%;
+        // background-color: red;
+        display: flex;
+        justify-content: flex-end;
+        .message {
+            background-color: #e4edff;
+            border-radius: 15px;
+            padding: 22px;
+
+            p {
+                font-size: 20px;
+                font-weight: 500;
+            }
+        }
+    }
+}

@@ -37,9 +37,9 @@ const ClientList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {clients.map((client, key) => {
+                    {clients.map((client, index) => {
                         return (
-                            <tr key={client.userId}>
+                            <tr key={index}>
                                 <td className={classes.profilePic}>
                                     <img
                                         src={defaultUrl}
@@ -48,7 +48,7 @@ const ClientList = () => {
                                 </td>
                                 <td>{client.userName}</td>
                                 <td>{client.userWeight}</td>
-                                <td>{client.userWeight}</td>
+                                <td>{client.userGender}</td>
                                 <td>{client.phone}</td>
                                 {/* <td>{val.exercise}</td> */}
                             </tr>

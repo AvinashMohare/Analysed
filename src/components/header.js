@@ -58,7 +58,7 @@ const Header = () => {
                 </div>
             </div>
 
-            <div className={classes.functionalities}>
+            {/* <div className={classes.functionalities}>
                 <div className={classes.search}>
                     <div className={classes.searchbar}>
                         <RiSearchLine
@@ -73,7 +73,7 @@ const Header = () => {
                 <div className={classes.notifications}>
                     <MdNotifications size={40} color="#0d30ac" />
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

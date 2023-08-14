@@ -35,98 +35,280 @@
         }
     }
 
+    .dashboard {
+        margin: 2vw auto;
+        width: 92%;
+        height: fit-content;
+        // background-color: red;
+
+        .clientInfo {
+            width: 100%;
+            height: 60%;
+            background-color: yellow;
+
+            .data {
+                height: 100%;
+                width: 100%;
+                margin: auto 0;
+            }
+        }
+
+        .bottomContainer {
+            width: 100%;
+            height: 40%;
+
+            background-color: red;
+
+            display: flex;
+            flex-direction: row;
+
+            .graph {
+                width: 50%;
+                height: 100%;
+                // background-color: greenyellow;
+            }
+            .buttons {
+                width: 30%;
+                height: 100%;
+                // background-color: pink;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .buttonsContainer {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    // background-color: black;
+                    .assign {
+                        width: fit-content;
+                        height: fit-content;
+                        padding: 16px 24px;
+                        background-color: #6c9fff;
+                        border-radius: 80px;
+                        margin-bottom: 0.9rem;
+
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        p {
+                            font-size: 24px;
+                            font-weight: 600;
+                            color: #ffffff;
+                        }
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+
     .info {
         width: 95%;
 
         .assignedExercises {
-            width: fit-content;
-            height: fit-content;
-
-            padding: 30px 20px 15px 20px;
-
-            outline: 3px solid #d6e1fe;
-            border-radius: 20px;
-            margin: auto;
-
+            height: 70vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
+            .container {
+                width: 22vw;
+                height: fit-content;
+                padding: 30px 20px 15px 20px;
 
-            .heading {
-                // background-color: yellow;
-                width: 100%;
+                outline: 3px solid #d6e1fe;
+                border-radius: 20px;
+                margin: auto;
+
                 display: flex;
+                flex-direction: column;
                 align-items: center;
                 justify-content: center;
-                p {
-                    color: #2b39b6;
-                    font-weight: 700;
-                    font-size: 1.5rem;
-                }
-            }
 
-            .cards {
-                margin-top: 2vw;
-                .exercise {
-                    width: 20vw;
-                    height: 2.5vw;
-
-                    padding: 10px 20px;
-                    margin-bottom: 0.8vw;
-
-                    background-color: #f9f6ff;
-                    border-radius: 10px;
-
+                .heading {
+                    // background-color: yellow;
+                    width: 100%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    p {
+                        color: #2b39b6;
+                        font-weight: 700;
+                        font-size: 1.5rem;
+                    }
+                }
 
-                    .exerciseName {
-                        width: 80%;
+                .cards {
+                    margin-top: 2vw;
+                    .exercise {
+                        width: 20vw;
+                        height: 2.5vw;
+
+                        padding: 10px 20px;
+                        margin-bottom: 0.8vw;
+
+                        background-color: #f9f6ff;
+                        border-radius: 10px;
+
                         display: flex;
                         align-items: center;
                         justify-content: center;
-                        p {
-                            font-weight: 600;
-                            font-size: 1.25rem;
-                            color: #000000;
+
+                        .exerciseName {
+                            width: 80%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            p {
+                                font-weight: 600;
+                                font-size: 1.25rem;
+                                color: #000000;
+                            }
+                        }
+
+                        .delete {
+                            width: 8%;
+                            height: 70%;
+
+                            .icon {
+                                width: 100%;
+                                height: 100%;
+                                color: #699bf7;
+                            }
+
+                            &:hover {
+                                cursor: pointer;
+                            }
                         }
                     }
+                }
 
-                    .delete {
-                        width: 8%;
-                        height: 70%;
+                .footer {
+                    margin-top: 10vw;
+                    width: 100%;
+
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+
+                    .buttons {
+                        height: 3vw;
+                        width: 3vw;
 
                         .icon {
-                            width: 100%;
                             height: 100%;
-                            color: #699bf7;
-                        }
-
-                        &:hover {
-                            cursor: pointer;
+                            width: 100%;
+                            color: #8db2f9;
                         }
                     }
                 }
             }
+        }
 
-            .footer {
-                margin-top: 10vw;
-                width: 100%;
+        .rootExercises {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin: 0 2vw;
 
+            .header {
+                margin-bottom: 2vw;
+                width: 95%;
+                top: 0;
                 display: flex;
-                justify-content: flex-end;
-                align-items: flex-end;
+                justify-content: space-between;
 
-                .buttons {
-                    height: 3vw;
-                    width: 3vw;
+                .title {
+                    width: 30%;
+                    p {
+                        font-weight: 700;
+                        font-size: 36px;
+                        color: #3b3c40;
+                    }
+                }
+            }
 
-                    .icon {
-                        height: 100%;
-                        width: 100%;
-                        color: #8db2f9;
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 90%;
+                .gridContainer {
+                    // display: flex;
+                    // align-items: row;
+                    // flex-wrap: wrap;
+                    display: grid;
+                    grid-template-columns: repeat(3, 1fr);
+                    gap: 1.8em;
+
+                    .card {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        position: relative;
+                    }
+
+                    .card {
+                        background-color: #e7f3ff;
+                        border: 0.2em solid #e8deff;
+                        padding: 2em;
+                        text-align: center;
+                        border-radius: 1vw;
+
+                        width: 21vw;
+                        height: 22vw;
+
+                        .imageContainer {
+                            width: 80%;
+
+                            img {
+                                border-radius: 0.5em;
+                                width: 55%;
+                                height: auto;
+                                margin-bottom: 1em;
+                                object-fit: contain;
+                            }
+                        }
+
+                        .textContainer {
+                            display: flex;
+                            flex-direction: column;
+                            // align-items: left;
+                            justify-content: left;
+                            // background-color: red;
+                            h3 {
+                                margin-bottom: 0.5em;
+                                font-weight: 600;
+                                font-size: 1.25em;
+                                color: var(--secondary-color);
+                            }
+
+                            p {
+                                font-weight: 400;
+                                font-size: 1em;
+                                color: #000000;
+                            }
+                        }
+
+                        .footer {
+                            position: absolute;
+                            top: 20px;
+                            left: 40px;
+                            .icon {
+                                color: #699bf7;
+                                height: 30px;
+                                width: 30px;
+                            }
+                            &:hover {
+                                cursor: pointer;
+                            }
+                        }
                     }
                 }
             }
