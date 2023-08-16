@@ -15,7 +15,7 @@ import MainClients from "../Clients/mainClients";
 import { AuthProvider } from "../../components/data_fetch/authProvider";
 import ClientsRequest from "../ClientsRequest/clientsRequest";
 import Settings from "../Settings/settings";
-import Chats from "../Chat/chats";
+import MainChats from "../Chat/mainChats";
 
 function Home(props) {
     //For signout option
@@ -40,7 +40,7 @@ function Home(props) {
         0: <Dashboard />,
         1: <MainClients />,
         2: <MainExercises />,
-        3: <Chats />,
+        3: <MainChats />,
         4: <ClientsRequest />,
         5: <Settings />,
     };
