@@ -42,7 +42,11 @@ function Home(props) {
         2: <MainExercises />,
         3: <MainChats />,
         4: <ClientsRequest />,
-        5: <Settings />,
+        5: (
+            <AuthProvider>
+                <Settings />
+            </AuthProvider>
+        ),
     };
 
     const handleOptionClick = (index) => {

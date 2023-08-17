@@ -1,8 +1,7 @@
-/* .SettingsComp{
+.SettingsComp {
     width: 1200px;
-    height:1000px;
-
-} */
+    height: 1000px;
+}
 
 .Settings {
     width: 90%;
@@ -55,7 +54,7 @@
     position: relative;
     color: rgb(13, 48, 172);
     font-size: 2vw;
-    font-family: Raleway;
+
     font-weight: 600;
     overflow-wrap: break-word;
 }
@@ -66,7 +65,7 @@
     position: relative;
     color: rgb(67, 113, 203);
     font-size: 1vw;
-    font-family: Raleway;
+
     font-weight: 400;
     overflow-wrap: break-word;
 }
@@ -96,7 +95,6 @@
     position: absolute;
     color: white;
     font-size: 1.5vw;
-    font-family: NATS;
     font-weight: 400;
     overflow-wrap: break-word;
 }
@@ -126,7 +124,6 @@
     position: absolute;
     color: #7e9ddb;
     font-size: 1.4vw;
-    font-family: NATS;
     font-weight: 450;
     overflow-wrap: break-word;
 }
@@ -156,7 +153,7 @@
     left: 20%;
     top: 12%;
     font-size: 1.2vw;
-    font-family: Raleway;
+
     font-weight: 500;
     overflow-wrap: break-word;
 }
@@ -175,11 +172,8 @@
     color: #7e9ddb;
     width: 180%;
     position: relative;
-    /* margin-right: 40%; */
     font-size: 1.2vw;
-    font-family: NATS;
     font-weight: 400;
-    /* word-wrap: break-word; */
 }
 
 .firstrow {
@@ -202,7 +196,29 @@
     background: white;
     box-shadow: 0px 1.7000000476837158px 5px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    border: 0px;
+    /* border: 1px solid transparent;
+    outline: none;
+    padding-left: 20px;
+    font-size: 1vw;
+    color: #7e7e7e; */
+}
+
+.SmallBox1,
+.SmallBox2,
+.LargeBox,
+.TextArea {
+    border: 1px solid transparent;
+    outline: none;
+    padding-left: 20px;
+    font-size: 1vw;
+    color: #7e7e7e;
+}
+
+.SmallBox1:focus,
+.SmallBox2:focus,
+.LargeBox:focus,
+.TextArea:focus {
+    border: 1px solid #7e9ddb;
 }
 
 .SmallBox2 {
@@ -241,7 +257,6 @@
     /* width:180%; */
     margin-right: 6%;
     font-size: 1.2vw;
-    font-family: NATS;
     font-weight: 400;
     /* word-wrap: break-word; */
 }
@@ -281,7 +296,6 @@
     /* width:180%; */
     margin-right: 2.7%;
     font-size: 1.2vw;
-    font-family: NATS;
     font-weight: 400;
     /* word-wrap: break-word; */
 }
@@ -300,7 +314,6 @@
     /* width:180%; */
     margin-right: 4.1%;
     font-size: 1.2vw;
-    font-family: NATS;
     font-weight: 400;
     /* word-wrap: break-word; */
 }
@@ -350,7 +363,7 @@
     border-radius: 10px;
     border: none;
     color: white;
-    font-family: Raleway;
+
     font-weight: 1000;
     word-wrap: break-word;
     font-size: large;

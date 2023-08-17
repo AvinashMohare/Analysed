@@ -94,7 +94,10 @@ const HealthDataComponent = ({ docId }) => {
                     </div>
                     <div className={classes.pieChart}>
                         <div className={classes.inner}>
-                            
+                            <p className={classes.data}>
+                                {latestHeartRate ?? "N/A"}
+                            </p>
+                            <p className={classes.tag}>bpm</p>
                         </div>
                     </div>
                 </div>
