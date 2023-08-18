@@ -15,6 +15,7 @@ import classes from "./ClientDetails.module.scss";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoMdAddCircle, IoMdRemoveCircle } from "react-icons/io";
 import HealthDataComponent from "./healthData";
+import ClientData from "./clientData";
 
 const ClientDetails = ({ client, onBackToList }) => {
     const [assignedExercises, setAssignedExercises] = useState([]);
@@ -194,8 +195,6 @@ const ClientDetails = ({ client, onBackToList }) => {
 
             <div className={classes.dashboard}>
                 <div className={classes.clientInfo}>
-                    
-
                     <div className={classes.data}>
                         <HealthDataComponent docId={docId} />
                     </div>

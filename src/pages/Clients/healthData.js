@@ -66,10 +66,6 @@ const HealthDataComponent = ({ docId }) => {
         );
     };
 
-    // if (isLoading) {
-    //     return <LoadingSpinner />; // You can replace this with your loading component
-    // }
-
     if (error) {
         return <div>Error: {error}</div>;
     }
@@ -79,13 +75,6 @@ const HealthDataComponent = ({ docId }) => {
             <div className={classes.heading}>
                 <p>Activity Reports</p>
             </div>
-            {/* <p>{latestHeartRate ?? "N/A"}</p>
-            <p>
-                {latestUserWeight
-                    ? parseFloat(latestUserWeight).toFixed(2)
-                    : "N/A"}
-            </p>
-            <p>{latestSuprior ?? "N/A"}</p> */}
 
             <div className={classes.graphs}>
                 <div className={classes.heartBeat}>
@@ -102,18 +91,34 @@ const HealthDataComponent = ({ docId }) => {
                     </div>
                 </div>
 
-                <div className={classes.heartBeat}>
+                <div className={classes.weight}>
                     <div className={classes.head}>
                         <p>Weight</p>
                     </div>
-                    <div className={classes.pieChart}></div>
+                    <div className={classes.pieChart}>
+                        <div className={classes.inner}>
+                            <p className={classes.data}>
+                                {latestUserWeight
+                                    ? parseFloat(latestUserWeight).toFixed(0)
+                                    : "N/A"}
+                            </p>
+                            <p className={classes.tag}>Kg</p>
+                        </div>
+                    </div>
                 </div>
 
-                <div className={classes.heartBeat}>
+                <div className={classes.weight}>
                     <div className={classes.head}>
                         <p>VO2</p>
                     </div>
-                    <div className={classes.pieChart}></div>
+                    <div className={classes.pieChart}>
+                        <div className={classes.inner}>
+                            <p className={classes.data}>
+                                <p>{latestSuprior ?? "N/A"}</p>
+                            </p>
+                            <p className={classes.tag}>Superior</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -125,11 +130,3 @@ HealthDataComponent.propTypes = {
 };
 
 export default HealthDataComponent;
-
-// latestHeartRate ?? "N/A";
-// {
-//     latestUserWeight ? parseFloat(latestUserWeight).toFixed(2) : "N/A";
-// }
-// {
-//     latestSuprior ?? "N/A";
-// }

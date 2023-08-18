@@ -16,6 +16,7 @@ import { AuthProvider } from "../../components/data_fetch/authProvider";
 import ClientsRequest from "../ClientsRequest/clientsRequest";
 import Settings from "../Settings/settings";
 import MainChats from "../Chat/mainChats";
+import ResetPassword from "../Settings/settings";
 
 function Home(props) {
     //For signout option
@@ -47,6 +48,7 @@ function Home(props) {
                 <Settings />
             </AuthProvider>
         ),
+        // 5: <ResetPassword />,
     };
 
     const handleOptionClick = (index) => {
