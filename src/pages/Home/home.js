@@ -41,7 +41,11 @@ function Home(props) {
         0: <Dashboard />,
         1: <MainClients />,
         2: <MainExercises />,
-        3: <MainChats />,
+        3: (
+            <AuthProvider>
+                <MainChats />
+            </AuthProvider>
+        ),
         4: <ClientsRequest />,
         5: (
             <AuthProvider>

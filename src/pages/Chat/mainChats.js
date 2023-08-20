@@ -9,6 +9,8 @@ const MainChats = () => {
     const [clients, setClients] = useState([]); // State to hold the list of clients
     const [showChat, setShowChat] = useState(false);
 
+    // console.log(user.uID);
+
     const handleClientSelected = (client) => {
         setSelectedClient(client);
         setShowChat(true);
