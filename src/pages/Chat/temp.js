@@ -7,9 +7,10 @@ import {
     onSnapshot,
 } from "firebase/firestore";
 import { db } from "../../firebase";
-import classes from "./Chats.module.scss";
 
-const Chats = ({ user, client }) => {
+import "./components/Chats.scss";
+
+function ChatComponent({ user, client }) {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
 
@@ -61,47 +62,32 @@ const Chats = ({ user, client }) => {
     console.log(user.bio);
 
     return (
-        <div className={classes.rootChats}>
-            <div className={classes.header}>
-                <div className={classes.userImage}>
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTte_W3r44Rc7MYnXPQZLP-z3pfAJCKJuz1GA&usqp=CAU"
-                        alt="userName"
-                    />
-                </div>
-
-                <div className={classes.userName}>
-                    <p>{client.userName}</p>
-                </div>
-            </div>
-            <div className={classes.chatMessages}>
+        <div>
+            <h2>Chat with {client.userName}</h2>
+            <div className="chat-messages">
                 {messages.map((message, index) => (
                     <div
                         key={index}
-                        className={`${classes.message} ${
-                            message.sender === user.uid
-                                ? classes.sent
-                                : classes.received
+                        className={`message ${
+                            message.sender === user.uid ? "sent" : "received"
                         }`}
                     >
-                        <div className={classes.msg}>
-                            <p>{message.text}</p>
-                        </div>
+                        {/* Display user's image for sent messages */}
+
+                        {message.text}
                     </div>
                 ))}
             </div>
-            <div className={classes.chatInput}>
-                <div className={classes.inputContainer}>
-                    <input
-                        type="text"
-                        value={newMessage}
-                        onChange={(e) => setNewMessage(e.target.value)}
-                    />
-                    <button onClick={sendMessage}>Send</button>
-                </div>
+            <div className="chat-input">
+                <input
+                    type="text"
+                    value={newMessage}
+                    onChange={(e) => setNewMessage(e.target.value)}
+                />
+                <button onClick={sendMessage}>Send</button>
             </div>
         </div>
     );
-};
+}
 
-export default Chats;
+export default ChatComponent;
