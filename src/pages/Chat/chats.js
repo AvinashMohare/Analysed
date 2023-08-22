@@ -96,8 +96,14 @@ const Chats = ({ user, client }) => {
                         type="text"
                         value={newMessage}
                         onChange={(e) => setNewMessage(e.target.value)}
+                        placeholder="Type your message here.."
                     />
-                    <button onClick={sendMessage}>Send</button>
+                    <button
+                        onClick={sendMessage}
+                        className={classes.sendButton}
+                    >
+                        <p>Send message</p>
+                    </button>
                 </div>
             </div>
         </div>

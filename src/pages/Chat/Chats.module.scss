@@ -2,8 +2,13 @@
     display: flex;
     flex-direction: column;
     align-items: end;
-    background-color: #0d1dac;
+    // background-color: #0d1dac;
+    background-color: #f9fbff;
+    border-radius: 16px;
+
     width: 95%;
+
+    // position: relative;
 
     .header {
         width: 95%;
@@ -50,12 +55,13 @@
         height: fit-content;
         width: 95%;
         margin: 0 auto;
-        background-color: red;
+        // background-color: red;
 
         .message {
             &.received {
-                max-width: 100%;
+                display: flex;
 
+                max-width: 100%;
                 margin-bottom: 20px;
 
                 .msg {
@@ -91,15 +97,39 @@
     .chatInput {
         // position: fixed;
         // bottom: 50px;
-        width: 95%;
+        width: 90%;
         margin: 0 auto;
-        background-color: yellow;
+        background-color: white;
+        border-radius: 16px;
+        box-shadow: 0px 4px 8px 0px #cfdfff40;
 
-        // position: fixed;
         .inputContainer {
-            width: 100%;
-
+            background-color: white;
+            position: fixed;
+            bottom: 50px;
+            width: 1400px;
+            height: 69px;
+            outline: 1px solid transparent;
+            border-radius: 16px;
             input {
+                height: 100%;
+                width: 87%;
+                border-radius: 16px;
+                // background-color: #0177fd;
+                outline: 1px solid transparent;
+            }
+            .sendButton {
+                width: 160px;
+                height: 35px;
+                background-color: #f0f7ff;
+                border-radius: 112px;
+                border: 1px solid transparent;
+
+                p {
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: #0177fd;
+                }
             }
         }
     }
