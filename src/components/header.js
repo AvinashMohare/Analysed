@@ -1,6 +1,4 @@
 import classes from "../styles/Header.module.scss";
-import { MdNotifications } from "react-icons/md";
-import { RiSearchLine } from "react-icons/ri";
 import { useState, useEffect } from "react";
 
 const Header = () => {

@@ -16,6 +16,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoMdAddCircle, IoMdRemoveCircle } from "react-icons/io";
 import HealthDataComponent from "./healthData";
 import ClientData from "./clientData";
+import Chart from "../../components/chart";
 
 const ClientDetails = ({ client, onBackToList }) => {
     const [assignedExercises, setAssignedExercises] = useState([]);
@@ -200,7 +201,9 @@ const ClientDetails = ({ client, onBackToList }) => {
                     </div>
                 </div>
                 <div className={classes.bottomContainer}>
-                    <div className={classes.graph}></div>
+                    <div className={classes.graph}>
+                        <Chart />
+                    </div>
                     <div className={classes.buttons}>
                         <div className={classes.buttonsContainer}>
                             <div className={classes.assign}>

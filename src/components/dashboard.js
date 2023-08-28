@@ -1,6 +1,7 @@
 import classes from "../styles/Dashboard.module.scss";
+import Chart from "./chart";
 import ClientList from "./clientList";
-import ExerciseFetcher from "./data_fetch/exerciseFetcher";
+// import ExerciseFetcher from "./data_fetch/exerciseFetcher";
 import Exercises from "./exercises";
 import WelcomeCard from "./welcomeCard";
 
@@ -13,8 +14,10 @@ const Dashboard = (props) => {
                 </div>
 
                 <div className={classes.graphs}>
-                    <div className={classes.leftGrapg}></div>
-                    <div className={classes.rightGraph}></div>
+                    <div className={classes.leftGraph}></div>
+                    <div className={classes.rightGraph}>
+                        <Chart />
+                    </div>
                 </div>
 
                 <div className={classes.clientLists}>
