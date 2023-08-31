@@ -125,7 +125,12 @@ const ExerciseDetails = ({ exercise, onClose }) => {
                             <p>Videos</p>
                         </div>
                         <div className={classes.videoItem}>
-                            <video src={exercise.videoURL}></video>
+                            <video controls>
+                                <source
+                                    src={exercise.videoURL}
+                                    type="video/mp4"
+                                />
+                            </video>
                         </div>
                     </div>
 
