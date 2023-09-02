@@ -8,6 +8,7 @@ import {
     updateDoc,
     arrayUnion,
     doc,
+    setDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import ExerciseFetcher from "../../components/data_fetch/exerciseFetcher";
@@ -22,11 +23,24 @@ const ClientDetails = ({ client, onBackToList }) => {
     const [assignedExercises, setAssignedExercises] = useState([]);
     const [exercises, setExercises] = useState([]);
     const [showAssignExercise, setShowAssignExercise] = useState(false);
+    const [showNutrition, setShowNutrition] = useState(false);
+    const [nutritionData, setNutritionData] = useState({
+        calories: "",
+        fats: "",
+        proteins: "",
+        carbohydrates: "",
+    });
+
+    // Function to open/close the nutrition input overlay
+    const toggleNutritionOverlay = () => {
+        console.log("Nutrition");
+        console.log(showNutrition);
+        setShowNutrition(!showNutrition);
+    };
 
     console.log("fetching the clientId : ", client.userID);
-
     const [docId, setDocId] = useState("constant");
-    const userIdToFind = client.userID; // Replace with the actual userID you're looking for
+    const userIdToFind = client.userID; // Actual userID
 
     useEffect(() => {
         console.log("Fetching DocId :");
@@ -52,6 +66,81 @@ const ClientDetails = ({ client, onBackToList }) => {
     }, [userIdToFind, docId]);
 
     console.log("Doc id is : ", docId);
+
+    //Handling the nutrition submit.
+    // Fetch client's nutrition data from Firebase and update nutritionData state
+    useEffect(() => {
+        async function fetchClientNutritionData() {
+            try {
+                const userDocRef = doc(db, "Users", docId);
+                const nutritionDocRef = doc(
+                    userDocRef,
+                    "Calories",
+                    "nutritionData"
+                );
+                const nutritionSnapshot = await getDoc(nutritionDocRef);
+
+                if (nutritionSnapshot.exists()) {
+                    const nutritionDataFromFirebase = nutritionSnapshot.data();
+                    setNutritionData({
+                        calories: nutritionDataFromFirebase.calories || "",
+                        fats: nutritionDataFromFirebase.fats || "",
+                        proteins: nutritionDataFromFirebase.proteins || "",
+                        carbohydrates:
+                            nutritionDataFromFirebase.carbohydrates || "",
+                    });
+                }
+            } catch (error) {
+                console.error("Error fetching nutrition data:", error);
+            }
+        }
+
+        if (docId !== "constant") {
+            fetchClientNutritionData();
+        }
+    }, [docId]);
+
+    const handleNutritionSubmit = () => {
+        // Call the function to assign nutrition data using the defined state
+        assignNutritionData(docId, nutritionData);
+        setShowNutrition(false);
+    };
+
+    const assignNutritionData = async (userId, nutritionData) => {
+        // Validate that all fields are filled in before submission
+        if (
+            !nutritionData.calories ||
+            !nutritionData.fats ||
+            !nutritionData.proteins ||
+            !nutritionData.carbohydrates
+        ) {
+            // You can add error handling here to display a message to the user.
+            console.error("Please fill in all nutrition fields.");
+            return;
+        } else {
+            try {
+                // Reference to the user's document and the "Calories" subcollection
+                const userDocRef = doc(db, "Users", userId);
+                const caloriesCollectionRef = doc(
+                    userDocRef,
+                    "Calories",
+                    "nutritionData"
+                );
+
+                // Set the nutrition data in the "Calories" subcollection
+                await setDoc(caloriesCollectionRef, {
+                    calories: nutritionData.calories,
+                    fats: nutritionData.fats,
+                    proteins: nutritionData.proteins,
+                    carbohydrates: nutritionData.carbohydrates,
+                });
+
+                console.log("Nutrition data assigned successfully!");
+            } catch (error) {
+                console.error("Error assigning nutrition data:", error);
+            }
+        }
+    };
 
     //Fetching the exercises
     const handleExercisesFetched = (fetchedExercises) => {
@@ -209,7 +298,10 @@ const ClientDetails = ({ client, onBackToList }) => {
                             <div className={classes.assign}>
                                 <p>Daily Chart</p>
                             </div>
-                            <div className={classes.assign}>
+                            <div
+                                className={classes.assign}
+                                onClick={toggleNutritionOverlay}
+                            >
                                 <p>Assign Nutrition</p>
                             </div>
                             <div
@@ -222,6 +314,71 @@ const ClientDetails = ({ client, onBackToList }) => {
                     </div>
                 </div>
             </div>
+
+            {/* ///////////////////////////////////////////////////////////////? */}
+            {/* Nutrition Input Overlay */}
+            {showNutrition && (
+                <div className={classes.overlay}>
+                    <div className={classes.overlayContent}>
+                        <div className={classes.inputBox}>
+                            <label>Calories</label>
+                            <input
+                                type="text"
+                                value={nutritionData.calories}
+                                onChange={(e) =>
+                                    setNutritionData({
+                                        ...nutritionData,
+                                        calories: e.target.value,
+                                    })
+                                }
+                            />
+                        </div>
+                        <div className={classes.inputBox}>
+                            <label>Fats</label>
+                            <input
+                                type="text"
+                                value={nutritionData.fats}
+                                onChange={(e) =>
+                                    setNutritionData({
+                                        ...nutritionData,
+                                        fats: e.target.value,
+                                    })
+                                }
+                            />
+                        </div>
+                        <div className={classes.inputBox}>
+                            <label>Proteins</label>
+                            <input
+                                type="text"
+                                value={nutritionData.proteins}
+                                onChange={(e) =>
+                                    setNutritionData({
+                                        ...nutritionData,
+                                        proteins: e.target.value,
+                                    })
+                                }
+                            />
+                        </div>
+                        <div className={classes.inputBox}>
+                            <label>Carbohydrates</label>
+                            <input
+                                type="text"
+                                value={nutritionData.carbohydrates}
+                                onChange={(e) =>
+                                    setNutritionData({
+                                        ...nutritionData,
+                                        carbohydrates: e.target.value,
+                                    })
+                                }
+                            />
+                        </div>
+
+                        <button onClick={handleNutritionSubmit}>Done</button>
+                    </div>
+                </div>
+            )}
+
+            {/* /////////////////////////////////////////////////////// */}
 
             <div className={classes.info}>
                 {showAssignExercise ? (

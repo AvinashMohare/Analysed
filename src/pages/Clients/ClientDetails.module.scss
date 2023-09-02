@@ -118,6 +118,80 @@
         }
     }
 
+    /* Overlay Styles */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        background-color: rgba(0, 0, 0, 0.7);
+
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        z-index: 1000;
+        padding: 0 150px 150px 0;
+
+        .overlayContent {
+            background-color: #f4f9ff;
+            padding: 30px 50px 0 50px;
+
+            text-align: center;
+
+            width: fit-content;
+            height: fit-content;
+            border-radius: 20px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .inputBox {
+                display: flex;
+                flex-direction: column;
+                margin: 10px;
+                height: 91px;
+                width: 322px;
+
+                label {
+                    font-family: "Raleway";
+                    font-size: 24px;
+                    font-weight: 500;
+                    text-align: left;
+                    padding: 8px 0;
+                }
+
+                input {
+                    background: #ffffff;
+                    box-shadow: 0px 4px 8px 0px #d3d3d366;
+                    border-radius: 8px;
+                    height: 50px;
+                    width: 100%;
+                }
+            }
+
+            button {
+                margin: 20px 0;
+                background: #6c9fff;
+                box-shadow: 0px 4px 8px 0px #6c9fff40;
+
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 1rem;
+
+                &:hover {
+                    background-color: #0056b3; /* Change to a darker shade on hover if desired */
+                }
+            }
+        }
+    }
+
     .info {
         width: 95%;
 
@@ -325,3 +399,60 @@
         }
     }
 }
+
+// /* Overlay Styles */
+// .overlay {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background-color: rgba(
+//         0,
+//         0,
+//         0,
+//         0.7
+//     ); /* Semi-transparent black background */
+//     display: flex;
+//     justify-content: flex-end; /* Place content at the right side */
+//     align-items: flex-end; /* Place content at the bottom */
+//     z-index: 1000; /* Adjust the z-index as needed */
+
+//     padding: 0 150px 150px 0;
+// }
+
+// .overlayContent {
+//     background-color: #fff; /* Background color for the overlay content */
+//     border-radius: 5px;
+//     text-align: center;
+//     margin: 20px; /* Add some margin for spacing */
+//     padding: 20px;
+// }
+
+// h2 {
+//     font-size: 1.5rem;
+//     margin-bottom: 20px;
+// }
+
+// input {
+//     width: 100%;
+//     padding: 10px;
+//     margin-bottom: 20px;
+//     border: 1px solid #ccc;
+//     border-radius: 4px;
+//     font-size: 1rem;
+// }
+
+// button {
+//     background-color: #007bff; /* Change to your desired button color */
+//     color: #fff;
+//     border: none;
+//     padding: 10px 20px;
+//     border-radius: 4px;
+//     cursor: pointer;
+//     font-size: 1rem;
+// }
+
+// button:hover {
+//     background-color: #0056b3; /* Change to a darker shade on hover if desired */
+// }
