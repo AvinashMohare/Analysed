@@ -70,6 +70,7 @@ const ClientDetails = ({ client, onBackToList }) => {
     //Handling the nutrition submit.
     // Fetch client's nutrition data from Firebase and update nutritionData state
     useEffect(() => {
+        console.log("Nutritions");
         async function fetchClientNutritionData() {
             try {
                 const userDocRef = doc(db, "Users", docId);
@@ -178,6 +179,7 @@ const ClientDetails = ({ client, onBackToList }) => {
     const assignedExercisesRef = useRef(null);
 
     useEffect(() => {
+        console.log("scroll");
         if (showAssignExercise && assignedExercisesRef.current) {
             assignedExercisesRef.current.scrollIntoView({
                 behavior: "smooth",

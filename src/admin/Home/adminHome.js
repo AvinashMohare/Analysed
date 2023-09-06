@@ -8,6 +8,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminExercises from "../Exercises/adminExercises";
 import MainAdminExercises from "../Exercises/mainAdminExercises";
+import MainAdminClients from "../Clients/mainAdminClients";
+import MainAdminTherapists from "../Therapists/mainAdminTherapists";
 
 function AdminHome(props) {
     //For signout option
@@ -30,10 +32,11 @@ function AdminHome(props) {
     // Map of options to their corresponding components
     const componentMap = {
         0: <>Dashboard</>,
-        1: <>Clients</>,
-        2: <MainAdminExercises />,
-        3: <>Settings</>,
-        4: <>Admin</>,
+        1: <MainAdminClients />,
+        2: <MainAdminTherapists />,
+        3: <MainAdminExercises />,
+        4: <>Settings</>,
+        5: <>Admin</>,
     };
 
     const handleOptionClick = (index) => {

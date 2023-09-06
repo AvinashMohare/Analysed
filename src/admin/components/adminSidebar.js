@@ -38,9 +38,18 @@ const AdminSidebar = ({ handleOptionClick }) => {
         },
         {
             icon: (
-                <BiRun
+                <FaUserGroup
                     size={35}
                     color={selectedOption === 2 ? "#0D30AC" : "white"}
+                />
+            ),
+            text: "Therapist",
+        },
+        {
+            icon: (
+                <BiRun
+                    size={35}
+                    color={selectedOption === 3 ? "#0D30AC" : "white"}
                 />
             ),
             text: "Exercises",
@@ -50,7 +59,7 @@ const AdminSidebar = ({ handleOptionClick }) => {
             icon: (
                 <IoMdSettings
                     size={35}
-                    color={selectedOption === 3 ? "#0D30AC" : "white"}
+                    color={selectedOption === 4 ? "#0D30AC" : "white"}
                 />
             ),
             text: "Settings",
@@ -59,7 +68,7 @@ const AdminSidebar = ({ handleOptionClick }) => {
             icon: (
                 <BsFillPersonFill
                     size={35}
-                    color={selectedOption === 4 ? "#0D30AC" : "white"}
+                    color={selectedOption === 5 ? "#0D30AC" : "white"}
                 />
             ),
             text: "Admin",

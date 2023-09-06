@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
 
     // Retrieve authentication state from local storage during initialization
     useEffect(() => {
+        console.log("Auth Provider");
         const storedAuthState = localStorage.getItem("authState");
         if (storedAuthState) {
             setUser(JSON.parse(storedAuthState));
@@ -17,6 +18,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     useEffect(() => {
+        console.log("Auth Provider");
         const unsubscribe = auth.onAuthStateChanged((user) => {
             if (user) {
                 // User is signed in.

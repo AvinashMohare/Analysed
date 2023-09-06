@@ -5,7 +5,7 @@ import Login from "./pages/Login/login";
 import Signup from "./pages/SignUp/signup";
 
 import "./App.css";
-import LoginAdmin from "./admin/Login/login";
+import LoginAdmin from "./admin/Login/adminLogin";
 import AdminHome from "./admin/Home/adminHome";
 
 function App() {

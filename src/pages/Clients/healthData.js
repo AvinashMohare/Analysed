@@ -12,6 +12,7 @@ const HealthDataComponent = ({ docId }) => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+        console.log("health Data");
         async function fetchLatestData() {
             try {
                 const heartRateRef = collection(
