@@ -10,7 +10,7 @@ const ClientsPage = ({ onSelectClient }) => {
     };
 
     return (
-        <div className={styles.rootExercises}>
+        <div className={styles.rootClients}>
             <div className={styles.header}>
                 <div className={styles.title}>
                     <p>Clients List</p>

@@ -25,7 +25,7 @@ const ClientDetails = ({ client, onBackToList }) => {
     const [showAssignExercise, setShowAssignExercise] = useState(false);
     const [showNutrition, setShowNutrition] = useState(false);
     const [nutritionData, setNutritionData] = useState({
-        calories: "",
+        calories: " ",
         fats: "",
         proteins: "",
         carbohydrates: "",

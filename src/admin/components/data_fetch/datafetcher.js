@@ -6,7 +6,7 @@ function DataFetcher({ collectionName, onDataFetched }) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        console.log("Admin Exercise Fetcher ");
+        console.log("Admin's Fetcher ");
         const fetchData = async () => {
             try {
                 const dataRef = collection(db, collectionName);

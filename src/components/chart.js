@@ -2,7 +2,7 @@ import React from "react";
 import ReactApexChart from "react-apexcharts";
 import "../styles/Chart.css";
 
-const Chart = ({ xCategories, yData }) => {
+const Chart = () => {
     const series = [
         {
             name: "Sales",
