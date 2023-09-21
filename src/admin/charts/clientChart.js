@@ -1,12 +1,12 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
-import "../styles/Chart.css";
+import "./ClientChart.css";
 
-const Chart = () => {
+const ClientChart = ({ months, physiotherapistCounts }) => {
     const series = [
         {
-            name: "Sales",
-            data: [0, 15, 20, 15, 20, 25, 30],
+            name: "Clients",
+            data: physiotherapistCounts,
         },
     ];
 
@@ -18,7 +18,7 @@ const Chart = () => {
             },
         },
         xaxis: {
-            categories: ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"],
+            categories: months,
             axisBorder: {
                 show: false, // Hide the x-axis line
             },
@@ -28,7 +28,7 @@ const Chart = () => {
             labels: {
                 offsetY: 5,
                 style: {
-                    colors: "#DDDDDD", // Change the color of x-axis labels
+                    colors: "#4065C9", // Change the color of x-axis labels
                     fontSize: "0.1 rem", // Set the font size of y-axis labels
                 },
             },
@@ -36,17 +36,18 @@ const Chart = () => {
         },
         stroke: {
             curve: "smooth", // Set the curve to smooth
-            colors: "#DDDDDD",
+            colors: "#4065C9",
             width: 3,
         },
         yaxis: {
             labels: {
                 offsetX: -18, // Move labels to the left
                 style: {
-                    colors: "#DDDDDD", // Change the color of x-axis labels
+                    colors: "#4065C9", // Change the color of x-axis labels
                     fontSize: "0.1 rem", // Set the font size of y-axis labels
                 },
             },
+            tickAmount: 5,
         },
 
         grid: {
@@ -92,10 +93,15 @@ const Chart = () => {
     };
 
     return (
-        <div className="lineChart">
-            <ReactApexChart options={options} series={series} type="line" />
+        <div className="line-chart">
+            <ReactApexChart
+                options={options}
+                series={series}
+                type="line"
+                height={300}
+            />
         </div>
     );
 };
 
-export default Chart;
+export default ClientChart;

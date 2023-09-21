@@ -55,6 +55,15 @@ function Signup() {
                 code += userId.charAt(randomIndex);
             }
 
+            // Format the current date
+            const currentDate = new Date();
+            const formattedDate = currentDate.toLocaleString("en-US", {
+                weekday: "long",
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+            });
+
             await addDoc(userDataRef, {
                 name: name,
                 username: username,
@@ -68,6 +77,7 @@ function Signup() {
                 referralCode: code,
                 profileImageURL:
                     "https://img.freepik.com/free-photo/doctor-with-his-arms-crossed-white-background_1368-5790.jpg?size=626&ext=jpg&ga=GA1.2.1991124506.1689017917&semt=sph",
+                accCreated: formattedDate,
             });
 
             console.log(code);

@@ -1,7 +1,7 @@
 .rootSignup {
     width: 100%;
 
-    height: fit-content;
+    height: 100%;
     background: #7282fb;
 
     padding: 4.37rem 0;
@@ -199,6 +199,28 @@
                             font-family: "Roboto";
                             font-size: 22px;
                             font-weight: 400;
+                        }
+
+                        .gender {
+                            width: 100%;
+                            height: 50px;
+                            margin-left: 15px;
+
+                            border-radius: 10px;
+                            background: #e3e6fe;
+
+                            color: #817c7c;
+                            font-family: "Roboto";
+                            font-size: 22px;
+                            font-weight: 400;
+
+                            border: none;
+
+                            padding: 8px;
+
+                            &:focus {
+                                border: 2px solid #809bdd;
+                            }
                         }
                     }
                 }

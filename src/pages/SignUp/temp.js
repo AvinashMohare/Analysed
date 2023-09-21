@@ -26,7 +26,7 @@ const Login = () => {
 
                         <div className={classes.inputBoxNormal}>
                             <label>Email</label>
-                            <input type="text" placeholder="First_Name" />
+                            <input type="text" placeholder="Email" />
                         </div>
 
                         <div className={classes.column}>
@@ -54,12 +54,18 @@ const Login = () => {
                         <div className={classes.column2}>
                             <div className={classes.inputBox}>
                                 <label>Age</label>
-                                <input type="number" placeholder="XX" />
+                                <input type="number" min="0" placeholder="XX" />
                             </div>
                             <div className={classes.inputBox}>
                                 <label>Gender</label>
-                                <input type="text" placeholder="" />
+                                <select className={classes.gender}>
+                                    <option value="">Select</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
                             </div>
+                            <div className={classes.inputBox}></div>
                         </div>
                     </form>
                 </div>
