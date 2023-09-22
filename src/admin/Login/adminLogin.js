@@ -2,32 +2,49 @@ import classes from "../../pages/Login/Login.module.scss";
 import login from "../../assets/login.png";
 import { MdEmail } from "react-icons/md";
 import { RiLockPasswordFill } from "react-icons/ri";
-
-import { adminUsers } from "./adminUsers";
-
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { db } from "../../firebase";
+import { collection, query, where, getDocs } from "firebase/firestore";
 
 function LoginAdmin() {
     const navigate = useNavigate();
-    const [values, setValues] = useState({
+    const [adminInfo, setAdminInfo] = useState({
         email: "",
-        pass: "",
+        password: "",
     });
 
-    const handleLogin = () => {
-        // Check if the entered email and password match any admin user
-        const adminUser = adminUsers.find(
-            (user) =>
-                user.email === values.email && user.password === values.pass
-        );
+    const [errorMessage, setErrorMessage] = useState(null);
 
-        if (adminUser) {
-            // Successful login, navigate to the admin panel or perform other actions
-            navigate("/adminhome"); // Adjust the path
-        } else {
-            // Invalid credentials, display an error message or handle as needed
-            console.log("Invalid credentials");
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setAdminInfo({ ...adminInfo, [name]: value });
+    };
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        try {
+            // Check if the authenticated admin exists in the "Admins" collection
+            const adminsRef = collection(db, "Admins");
+            const q = query(adminsRef, where("email", "==", adminInfo.email));
+            const querySnapshot = await getDocs(q);
+
+            if (querySnapshot.empty) {
+                setErrorMessage("Admin not found.");
+            } else {
+                const adminData = querySnapshot.docs[0].data();
+                // Compare the entered password with the password in Firebase (assuming it's plain text)
+                if (adminInfo.password === adminData.password) {
+                    console.log("Admin logged in successfully!");
+                    navigate("/adminhome");
+                } else {
+                    setErrorMessage("Invalid email or password.");
+                }
+            }
+        } catch (error) {
+            console.error("Error logging in admin: ", error);
+            setErrorMessage("Invalid email or password.");
         }
     };
 
@@ -52,12 +69,9 @@ function LoginAdmin() {
                                 <div className={classes.inputEmail}>
                                     <input
                                         type="email"
-                                        onChange={(event) =>
-                                            setValues((prev) => ({
-                                                ...prev,
-                                                email: event.target.value,
-                                            }))
-                                        }
+                                        name="email"
+                                        value={adminInfo.email}
+                                        onChange={handleInputChange}
                                     />
                                 </div>
                             </div>
@@ -80,16 +94,17 @@ function LoginAdmin() {
                                 <div className={classes.inputPassword}>
                                     <input
                                         type="password"
-                                        onChange={(event) =>
-                                            setValues((prev) => ({
-                                                ...prev,
-                                                pass: event.target.value,
-                                            }))
-                                        }
+                                        name="password"
+                                        value={adminInfo.password}
+                                        onChange={handleInputChange}
                                     />
                                 </div>
                             </div>
                         </div>
+
+                        {errorMessage && (
+                            <p className="error">{errorMessage}</p>
+                        )}
 
                         <div className={classes.buttons}>
                             <div

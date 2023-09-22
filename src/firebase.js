@@ -38,10 +38,7 @@ auth.onAuthStateChanged((user) => {
 });
 
 // Call this function to initialize your app's logic and UI interactions
-function initApp() {
-    // Here, you can add your app's logic and UI interactions.
-    // For example, you can set up event listeners, fetch data from Firestore, etc.
-}
+function initApp() {}
 
 // Call the function to initialize your app when the page loads
 window.onload = function () {
