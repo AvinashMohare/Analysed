@@ -72,10 +72,10 @@ function AdminHome(props) {
                     <div className={classes.top}>
                         <Header />
                     </div>
-                    {/* <div className={classes.bottom}>
+                    <div className={classes.bottom}>
                         {selectedOption !== null &&
                             componentMap[selectedOption]}
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>
