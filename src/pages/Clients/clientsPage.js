@@ -16,7 +16,7 @@ const ClientsPage = ({ onSelectClient }) => {
                     <p>Clients List</p>
                 </div>
 
-                <div className={styles.buttons}>Add New</div>
+                {/* <div className={styles.buttons}>Add New</div> */}
             </div>
 
             <div className={styles.container}>
