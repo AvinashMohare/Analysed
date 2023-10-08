@@ -11,7 +11,6 @@ import {
 } from "firebase/firestore";
 import { db } from "../../firebase";
 
-
 const ClientsRequest = () => {
     const [clients, setClients] = useState([]);
     const [refreshKey, setRefreshKey] = useState(0);
@@ -21,6 +20,7 @@ const ClientsRequest = () => {
     };
 
     const findDocumentId = async (userID) => {
+        console.log(userID);
         try {
             const usersRef = collection(db, "Users");
             const q = query(usersRef, where("userID", "==", userID));

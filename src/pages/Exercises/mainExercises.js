@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ExercisesPage from "./exercisesPage";
-// import AddExercises from "./addExercises";
 import AddExercises from "./addExercises";
 
 import ExerciseDetails from "./exerciseDetail"; // Import the ExerciseDetails component

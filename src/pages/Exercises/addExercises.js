@@ -1,10 +1,12 @@
-import { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, addDoc } from "firebase/firestore";
 import { db, auth } from "../../firebase";
+import { useDropzone } from "react-dropzone";
+
+import classes from "./AddExercises.module.scss";
 
 const AddExercises = ({ onBackClick }) => {
-    const [video, setVideo] = useState(null);
     const [thumbnail, setThumbnail] = useState(null);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -12,6 +14,8 @@ const AddExercises = ({ onBackClick }) => {
     const [caloriesBurnPerMin, setCaloriesBurnPerMin] = useState("");
     const [duration, setDuration] = useState("");
     const [reps, setReps] = useState("");
+    const [video, setVideo] = useState(null);
+    const [success, setSuccess] = useState(false);
 
     const handleVideoChange = (e) => {
         const file = e.target.files[0];
@@ -54,7 +58,6 @@ const AddExercises = ({ onBackClick }) => {
             reps,
             assignedTo: [],
             userId: auth?.currentUser?.uid,
-            // You can get the current user ID using Firebase Auth or any other authentication method you use
         };
 
         try {
@@ -72,8 +75,10 @@ const AddExercises = ({ onBackClick }) => {
             setCaloriesBurnPerMin("");
             setDuration("");
             setReps("");
+
+            setSuccess(true);
         } catch (error) {
-            console.error("Error adding exercise: ", error);
+            // console.error("Error adding exercise: ", error);
         }
     };
 
@@ -82,59 +87,163 @@ const AddExercises = ({ onBackClick }) => {
         onBackClick();
     };
 
+    const handleSuccess = () => {
+        setSuccess(false);
+    };
+
     return (
-        <form onSubmit={handleSubmit}>
-            <label>Video</label>
-            <input type="file" onChange={handleVideoChange} />
+        <>
+            <div className={classes.addExercises}>
+                <div className={classes.header}>
+                    <p>Add Exercise</p>
+                </div>
 
-            <label>Thumbnail</label>
-            <input
-                type="file"
-                onChange={handleThumbnailChange}
-                placeholder="Thumbnail"
-            />
-            <input
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                placeholder="Title"
-            />
-            <input
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Description"
-            />
-            <input
-                type="text"
-                value={musclesInvolved}
-                onChange={(e) => setMusclesInvolved(e.target.value)}
-                placeholder="Muscles Involved"
-            />
-            <input
-                type="text"
-                value={caloriesBurnPerMin}
-                onChange={(e) => setCaloriesBurnPerMin(e.target.value)}
-                placeholder="Calories Burn Per Minute"
-            />
+                <div className={classes.form}>
+                    <div className={classes.formElements}>
+                        <div className={classes.fieldName}>
+                            <p>Exercise Name</p>
+                        </div>
+                        <div className={classes.inputField}>
+                            <input
+                                type="text"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </div>
+                    </div>
 
-            <input
-                type="text"
-                value={duration}
-                onChange={(e) => setDuration(e.target.value)}
-                placeholder="Duration"
-            />
+                    <div className={classes.formElements}>
+                        <div className={classes.fieldName}>
+                            <p>Duration</p>
+                        </div>
+                        <div className={classes.inputFieldSmall}>
+                            <input
+                                type="number"
+                                value={duration}
+                                onChange={(e) => setDuration(e.target.value)}
+                            />
+                        </div>
+                    </div>
 
-            <input
-                type="text"
-                value={reps}
-                onChange={(e) => setReps(e.target.value)}
-                placeholder="Reps"
-            />
+                    <div className={classes.formElementsBig}>
+                        <div className={classes.fieldName}>
+                            <p>Exercise Description</p>
+                        </div>
+                        <div className={classes.inputFieldBig}>
+                            <textarea
+                                type="text"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
+                    </div>
 
-            <button type="submit">Submit</button>
-            <button onClick={handleBackClick}>Back to Exercises</button>
-        </form>
+                    <div className={classes.formElements}>
+                        <div className={classes.fieldName}>
+                            <p>Muscles Involved</p>
+                        </div>
+                        <div className={classes.inputField}>
+                            <input
+                                type="text"
+                                value={musclesInvolved}
+                                onChange={(e) =>
+                                    setMusclesInvolved(e.target.value)
+                                }
+                            />
+                        </div>
+                    </div>
+
+                    <div className={classes.bottom}>
+                        <div className={classes.left}>
+                            <div className={classes.formElementsBottom}>
+                                <div className={classes.fieldName}>
+                                    <p>Calories Burn</p>
+                                </div>
+                                <div className={classes.inputFieldSmall}>
+                                    <input
+                                        type="number"
+                                        value={caloriesBurnPerMin}
+                                        onChange={(e) =>
+                                            setCaloriesBurnPerMin(
+                                                e.target.value
+                                            )
+                                        }
+                                    />
+                                </div>
+                            </div>
+
+                            <div className={classes.formElementsBottom}>
+                                <div className={classes.fieldName}>
+                                    <p>Repetitions</p>
+                                </div>
+                                <div className={classes.inputFieldSmall}>
+                                    <input
+                                        type="number"
+                                        value={reps}
+                                        onChange={(e) =>
+                                            setReps(e.target.value)
+                                        }
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className={classes.right}>
+                            <div className={classes.video}>
+                                <div className={classes.field}>
+                                    <p>Add Video</p>
+                                </div>
+                                <div className={classes.videoContainer}>
+                                    <input
+                                        type="file"
+                                        onChange={handleVideoChange}
+                                    />
+                                </div>
+                            </div>
+
+                            <div className={classes.image}>
+                                <div className={classes.field}>
+                                    <p>Add Image</p>
+                                </div>
+                                <div className={classes.imageContainer}>
+                                    <input
+                                        type="file"
+                                        onChange={handleThumbnailChange}
+                                        placeholder="Thumbnail"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={classes.footer}>
+                        <div className={classes.button} onClick={handleSubmit}>
+                            <span>Submit</span>
+                        </div>
+
+                        <div
+                            className={classes.button}
+                            onClick={handleBackClick}
+                        >
+                            <span>Back</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {success ? (
+                <div className={classes.successMsg}>
+                    <div className={classes.text}>
+                        <p>Exercise Added successfully</p>
+
+                        <div className={classes.button} onClick={handleSuccess}>
+                            <span>Done</span>
+                        </div>
+                    </div>
+                </div>
+            ) : (
+                <></>
+            )}
+        </>
     );
 };
 
