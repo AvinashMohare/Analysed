@@ -273,15 +273,21 @@ const ClientDetails = ({ client, onBackToList }) => {
     return (
         <div className={classes.rootClientDetails}>
             <div className={classes.header}>
-                <div className={classes.userImage}>
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTte_W3r44Rc7MYnXPQZLP-z3pfAJCKJuz1GA&usqp=CAU"
-                        alt={client.userName}
-                    />
+                <div className={classes.headerContainer}>
+                    <div className={classes.userImage}>
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTte_W3r44Rc7MYnXPQZLP-z3pfAJCKJuz1GA&usqp=CAU"
+                            alt={client.userName}
+                        />
+                    </div>
+
+                    <div className={classes.userName}>
+                        <p>{client.userName}</p>
+                    </div>
                 </div>
 
-                <div className={classes.userName}>
-                    <p>{client.userName}</p>
+                <div className={classes.buttons} onClick={onBackToList}>
+                    <div className={classes.button}>Back</div>
                 </div>
             </div>
 
@@ -496,7 +502,6 @@ const ClientDetails = ({ client, onBackToList }) => {
                     <></>
                 )}
             </div>
-            <button onClick={onBackToList}>Back to Client List</button>
         </div>
     );
 };

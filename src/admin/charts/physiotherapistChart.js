@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import ReactApexChart from "react-apexcharts";
-import "./PhysiotherapistChart.css";
+import "./PhysiotherapistChart.scss";
 
 const PhysiotherapistChart = ({ months, physiotherapistCounts }) => {
     const series = [
@@ -88,13 +88,26 @@ const PhysiotherapistChart = ({ months, physiotherapistCounts }) => {
     };
 
     return (
-        <div className="bar-chart">
-            <ReactApexChart
-                options={chartOptions}
-                series={series}
-                type="bar"
-                height={350}
-            />
+        <div className="chart">
+            <div className="header">
+                <p className="title">Physical Therapists</p>
+
+                <div className="button">
+                    <p>
+                        This Year <span> &#x25BC; </span>
+                    </p>
+                </div>
+            </div>
+
+            <div className="chartMain">
+                <ReactApexChart
+                    options={chartOptions}
+                    series={series}
+                    type="bar"
+                    height={350}
+                />
+                ;
+            </div>
         </div>
     );
 };

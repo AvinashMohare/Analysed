@@ -1,13 +1,40 @@
 .exerciseDetailsContainer {
-    .exerciseTitle {
-        font-weight: 700;
-        font-size: 36px;
-        letter-spacing: 0.2px;
-        height: 4vw;
-        width: 100%;
-        // overflow: hidden;
-        p {
-            color: #3b3c40;
+    .header {
+        display: flex;
+        flex-direction: row;
+        width: 97%;
+        .exerciseTitle {
+            font-weight: 700;
+            font-size: 36px;
+            letter-spacing: 0.2px;
+            height: 4vw;
+            width: 90%;
+            p {
+                color: #3b3c40;
+            }
+        }
+
+        .buttons {
+            background-color: #6c9fff;
+            height: fit-content;
+
+            border-radius: 80px;
+
+            .button {
+                padding: 12px 25px;
+                color: #ffffff;
+                font-size: 20px;
+                font-weight: 500;
+
+                border-radius: 80px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        &:hover {
+            cursor: pointer;
         }
     }
 

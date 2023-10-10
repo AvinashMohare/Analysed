@@ -1,7 +1,25 @@
 import React from "react";
 import "../../pages/Clients/ClientData.scss";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const AdminTherapistDetails = ({ therapist, onBackToList }) => {
+    const handleDeleteTherapist = async () => {
+        try {
+            // Assuming therapist.id is the unique identifier for the therapist
+            const therapistDocRef = doc(db, "physiotherapist", therapist.id);
+
+            // Delete the document from Firestore
+            await deleteDoc(therapistDocRef);
+
+            // Handle successful deletion (e.g., show a message or navigate back)
+            onBackToList();
+        } catch (error) {
+            console.error("Error deleting therapist: ", error);
+            // Handle the error, show an error message, or take appropriate action
+        }
+    };
+
     return (
         <div className="container1">
             <div className="client">
@@ -46,7 +64,7 @@ const AdminTherapistDetails = ({ therapist, onBackToList }) => {
                         <button onClick={onBackToList}>Back</button>
                     </div>
                     <div className="btn2">
-                        <button>Save</button>
+                        <button onClick={handleDeleteTherapist}>Delete</button>
                     </div>
                 </div>
             </div>

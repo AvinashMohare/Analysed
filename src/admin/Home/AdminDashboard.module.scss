@@ -1,0 +1,126 @@
+.dashboard {
+    .stats {
+        .statsContainer {
+            display: flex;
+            flex-direction: row;
+            width: 1200px;
+            justify-content: space-around;
+
+            .card {
+                position: relative;
+                width: 320px;
+                height: 236.73px;
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                border-radius: 22.864px;
+                background: linear-gradient(
+                    123deg,
+                    #7fa5ed -88.05%,
+                    #0d30ac 167.83%
+                );
+
+                box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08),
+                    0px -4px 20px 0px rgba(0, 0, 0, 0.08);
+
+                .circular {
+                    width: 132px;
+                    height: 132px;
+
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    border-radius: 50%;
+                    outline: 10px solid #54e8f1;
+
+                    .content {
+                        text-align: center;
+                        .count {
+                            color: #fff;
+                            font-size: 28px;
+                            font-weight: 700;
+                        }
+
+                        .field {
+                            color: #fff;
+                            font-size: 22px;
+                            font-weight: 500;
+                        }
+                    }
+                }
+
+                .fieldPhysio {
+                    color: #fff;
+                    font-size: 22px;
+                    font-weight: 500;
+
+                    position: absolute;
+                    bottom: 10px;
+                }
+            }
+
+            .cardPhysio {
+                width: 320px;
+                height: 236.73px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border-radius: 22.864px;
+                background: linear-gradient(
+                    123deg,
+                    #7fa5ed -88.05%,
+                    #0d30ac 167.83%
+                );
+
+                box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.08),
+                    0px -4px 20px 0px rgba(0, 0, 0, 0.08);
+
+                .smallContainer {
+                    height: 75%;
+
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-around;
+
+                    .circular {
+                        width: 100px;
+                        height: 100px;
+
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        border-radius: 50%;
+                        outline: 10px solid #54e8f1;
+
+                        .content {
+                            text-align: center;
+                            .count {
+                                color: #fff;
+                                font-size: 28px;
+                                font-weight: 700;
+                            }
+                        }
+                    }
+
+                    .fieldPhysio {
+                        color: #fff;
+                        font-size: 22px;
+                        font-weight: 500;
+                    }
+                }
+            }
+        }
+    }
+
+    .physioChart {
+        margin-bottom: 50px;
+    }
+}

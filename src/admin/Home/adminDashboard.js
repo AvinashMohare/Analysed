@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import DataFetcher from "../components/data_fetch/datafetcher";
 import ClientChart from "../charts/clientChart";
 import PhysiotherapistChart from "../charts/physiotherapistChart";
+import classes from "./AdminDashboard.module.scss";
 
 const AdminDashboard = () => {
     const [exerciseCount, setExerciseCount] = useState(0);
@@ -54,7 +55,7 @@ const AdminDashboard = () => {
     };
 
     return (
-        <div>
+        <div className={classes.dashboard}>
             <DataFetcher
                 collectionName="exercises"
                 onDataFetched={(data) => onDataFetched(data, "exercises")}
@@ -68,25 +69,50 @@ const AdminDashboard = () => {
                 onDataFetched={(data) => onDataFetched(data, "physiotherapist")}
             />
 
-            <div>
-                <h2>Total Exercises: {exerciseCount}</h2>
+            <div className={classes.stats}>
+                <div className={classes.statsContainer}>
+                    <div className={classes.card}>
+                        <div className={classes.circular}>
+                            <div className={classes.content}>
+                                <p className={classes.count}>{clientCount}</p>
+                                <p className={classes.field}>Clients</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className={classes.cardPhysio}>
+                        <div className={classes.smallContainer}>
+                            <div className={classes.circular}>
+                                <div className={classes.content}>
+                                    <p className={classes.count}>
+                                        {physiotherapistCount}
+                                    </p>
+                                </div>
+                            </div>
+                            <p className={classes.fieldPhysio}>
+                                Physical Therapists
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className={classes.card}>
+                        <div className={classes.circular}>
+                            <div className={classes.content}>
+                                <p className={classes.count}>{exerciseCount}</p>
+                                <p className={classes.field}>Exercises</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div>
-                <h2>Total Clients: {clientCount}</h2>
-            </div>
-
-            <div>
-                <h2>Total Physiotherapists: {physiotherapistCount}</h2>
-            </div>
-
-            <div>
+            <div className={classes.clientChart}>
                 <ClientChart
                     months={getMonthNames()}
-                    physiotherapistCounts={physiotherapistCreationByMonth}
+                    physiotherapistCounts={clientCreationByMonth}
                 />
             </div>
-            <div>
+            <div className={classes.physioChart}>
                 <PhysiotherapistChart
                     months={getMonthNames()}
                     physiotherapistCounts={physiotherapistCreationByMonth}

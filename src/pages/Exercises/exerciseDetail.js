@@ -40,8 +40,16 @@ const ExerciseDetails = ({ exercise, onClose }) => {
 
     return (
         <div className={classes.exerciseDetailsContainer}>
-            <div className={classes.exerciseTitle}>
-                <p>{exercise.title}</p>
+            <div className={classes.header}>
+                <div className={classes.exerciseTitle}>
+                    <p>{exercise.title}</p>
+                </div>
+
+                <div className={classes.buttons} onClick={onClose}>
+                    <div className={classes.button}>
+                        <p>Back</p>
+                    </div>
+                </div>
             </div>
 
             <div className={classes.container}>
@@ -133,8 +141,6 @@ const ExerciseDetails = ({ exercise, onClose }) => {
                             </video>
                         </div>
                     </div>
-
-                    <button onClick={onClose}>Close</button>
                 </div>
             </div>
         </div>

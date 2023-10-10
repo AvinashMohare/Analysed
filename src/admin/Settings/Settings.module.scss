@@ -1,0 +1,73 @@
+.settings {
+    height: 100%;
+    .header {
+        height: 10%;
+        color: #000;
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+    .container {
+        width: 100%;
+        height: 80%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        form {
+            background-color: #f4f9ff;
+            padding: 50px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .field {
+                display: flex;
+                flex-direction: column;
+
+                margin: 25px;
+
+                .fieldName {
+                    font-size: 22px;
+                    font-weight: 500;
+                    margin-bottom: 5px;
+                }
+
+                .fieldInput {
+                    width: 350px;
+                    height: 45px;
+
+                    font-size: 20px;
+
+                    border-radius: 8px;
+                    background: #fff;
+                    box-shadow: 0px 4px 8px 0px rgba(211, 211, 211, 0.25);
+                }
+            }
+
+            .error {
+                font-size: 20px;
+                font-weight: 500;
+                color: red;
+            }
+
+            button {
+                padding: 10px 20px;
+                margin-top: 20px;
+                border-radius: 25px;
+                color: #fff;
+                background-color: #6c9fff;
+                border: none;
+
+                font-size: 20px;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

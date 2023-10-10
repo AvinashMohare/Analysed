@@ -1,6 +1,6 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
-import "./ClientChart.css";
+import "./ClientChart.scss";
 
 const ClientChart = ({ months, physiotherapistCounts }) => {
     const series = [
@@ -32,7 +32,7 @@ const ClientChart = ({ months, physiotherapistCounts }) => {
                     fontSize: "0.1 rem", // Set the font size of y-axis labels
                 },
             },
-            tickAmount: 8,
+            tickAmount: 10,
         },
         stroke: {
             curve: "smooth", // Set the curve to smooth
@@ -93,13 +93,25 @@ const ClientChart = ({ months, physiotherapistCounts }) => {
     };
 
     return (
-        <div className="line-chart">
-            <ReactApexChart
-                options={options}
-                series={series}
-                type="line"
-                height={300}
-            />
+        <div className="chart">
+            <div className="header">
+                <p className="title">Client</p>
+
+                <div className="button">
+                    <p>
+                        This Year <span> &#x25BC; </span>
+                    </p>
+                </div>
+            </div>
+
+            <div className="chartMain">
+                <ReactApexChart
+                    options={options}
+                    series={series}
+                    type="line"
+                    height={300}
+                />
+            </div>
         </div>
     );
 };

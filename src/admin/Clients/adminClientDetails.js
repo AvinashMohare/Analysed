@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import "../../pages/Clients/ClientData.scss";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 
 function calculateAge(birthdateString) {
     // Split the birthdate string into components
     const parts = birthdateString.split("/");
     const day = parseInt(parts[0], 10);
-    console.log("day:", day);
 
     const month = parts[1];
-    console.log("month:", month);
 
     const year = parseInt(parts[2], 10);
-    console.log("year:", year);
 
     // Define the months in order for date calculations
     const months = [
@@ -52,7 +51,24 @@ function calculateAge(birthdateString) {
 const AdminClientDetails = ({ client, onBackToList }) => {
     //Calculating age
     var age = calculateAge(client.userDOB);
-    console.log("Age", age);
+
+    //Delete
+    const handleDeleteClient = async () => {
+        try {
+            // Assuming therapist.id is the unique identifier for the therapist
+            const clientDocRef = doc(db, "Users", client.id);
+
+            // Delete the document from Firestore
+            await deleteDoc(clientDocRef);
+
+            // Handle successful deletion (e.g., show a message or navigate back)
+            console.log("Client deleted successfully");
+            onBackToList();
+        } catch (error) {
+            console.error("Error deleting Client: ", error);
+            // Handle the error, show an error message, or take appropriate action
+        }
+    };
 
     return (
         <div className="container1">
@@ -105,26 +121,6 @@ const AdminClientDetails = ({ client, onBackToList }) => {
                         />
                     </div>
                 </div>
-                <div className="row">
-                    {/* <div className="element">
-                        <h1>Weight</h1>
-                        <input />
-                    </div> */}
-                    {/* <div className="element">
-                        <h1>Duration</h1>
-                        <input />
-                    </div> */}
-                </div>
-                {/* <div className="row">
-                    <div className="element">
-                        <h1>Plan</h1>
-                        <input />
-                    </div>
-                    <div className="element">
-                        <h1>Location</h1>
-                        <input />
-                    </div>
-                </div> */}
             </div>
 
             <div className="buttons">
@@ -132,7 +128,7 @@ const AdminClientDetails = ({ client, onBackToList }) => {
                     <button onClick={onBackToList}>Go Back</button>
                 </div>
                 <div className="btn2">
-                    <button>Remove Client</button>
+                    <button onClick={handleDeleteClient}>Remove</button>
                 </div>
             </div>
         </div>
