@@ -1,40 +1,45 @@
-// // ExerciseDetails.js
-// import React from "react";
-
-// const ExerciseDetails = ({ exercise, onClose }) => {
-//     return (
-//         <div>
-//             {/* Display detailed information for the exercise */}
-//             <h2>{exercise.title}</h2>
-//             <p>{exercise.description}</p>
-//             {/* <p>{exercise.caloriesBurnPerMin}</p> */}
-//             {/* Add other exercise details you want to display */}
-//             <button onClick={onClose}>Close</button>
-//         </div>
-//     );
-// };
-
-// export default ExerciseDetails;
-
-// import React, { useState } from "react";
 import classes from "./ExerciseDetails.module.scss";
-
 import { FiClock } from "react-icons/fi";
 import { ImLoop } from "react-icons/im";
 import { AiOutlineFire } from "react-icons/ai";
 import { BiSolidPencil } from "react-icons/bi";
-
-// import { ref, doc } from "firebase/storage";
-// import { db } from "../../firebase";
-// import { updateDoc } from "firebase/firestore";
-
+import { useState } from "react";
+import { doc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase";
 const ExerciseDetails = ({ exercise, onClose }) => {
     const musclesData = exercise.musclesInvolved;
     // Process the data and split into individual card components
     const cardsArray = musclesData.split(",");
 
     //Using this I will update the changes
-    console.log(exercise.id);
+
+    const [isEditing, setIsEditing] = useState(false);
+    const [editedDescription, setEditedDescription] = useState(
+        exercise.description
+    );
+
+    const handleEditDescription = () => {
+        setIsEditing(true);
+    };
+
+    const handleDescriptionChange = (e) => {
+        setEditedDescription(e.target.value);
+    };
+
+    const handleSaveDescription = async () => {
+        try {
+            // Reference to the exercise document in Firebase
+            const exerciseRef = doc(db, "exercises", exercise.id);
+
+            // Update the description field with the edited description
+            await updateDoc(exerciseRef, { description: editedDescription });
+
+            // Exit the edit mode
+            setIsEditing(false);
+        } catch (error) {
+            console.error("Error updating description:", error);
+        }
+    };
 
     //Update the exercise using the exercise id
 
@@ -102,13 +107,31 @@ const ExerciseDetails = ({ exercise, onClose }) => {
                     <div className={classes.descriptionContainer}>
                         <div className={classes.descriptionTitle}>
                             <p>Description</p>
-                            <div>
+                            <div onClick={handleEditDescription}>
                                 <BiSolidPencil className={classes.icon} />
                             </div>
                         </div>
 
                         <div className={classes.descriptionContent}>
-                            <p>{exercise.description}</p>
+                            {isEditing ? (
+                                <div className={classes.editDesc}>
+                                    <textarea
+                                        value={editedDescription}
+                                        onChange={handleDescriptionChange}
+                                    />
+
+                                    <div
+                                        className={classes.buttons}
+                                        onClick={handleSaveDescription}
+                                    >
+                                        <div className={classes.button}>
+                                            <p>Save</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ) : (
+                                <p>{editedDescription}</p>
+                            )}
                         </div>
                     </div>
 
