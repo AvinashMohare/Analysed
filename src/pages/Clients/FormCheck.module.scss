@@ -39,60 +39,92 @@
     }
 
     .container {
-        display: flex;
-        flex-direction: row;
+        .top {
+            display: flex;
+            flex-direction: row;
+            .left {
+                width: 30%;
+                .thumbnailContainer {
+                    width: 22.5vw;
+                    height: 29vw;
 
-        .left {
-            width: 30%;
-            .thumbnailContainer {
-                width: 22.5vw;
-                height: 29vw;
+                    .thumbnailImage {
+                        height: 100%;
+                        width: 100%;
+                        border-radius: 20px;
+                    }
+                }
+            }
 
-                .thumbnailImage {
-                    height: 100%;
-                    width: 100%;
-                    border-radius: 20px;
+            .right {
+                padding-left: 2vw;
+                padding-right: 2vw;
+                width: 71%;
+
+                .details {
+                    display: flex;
+
+                    .musclesInvolvedContainer,
+                    .accuracyContainer {
+                        height: 8vw;
+                        margin-left: 10px;
+
+                        margin-right: 20px;
+                        .musclesInvolvedTitle,
+                        .accuracyTitle {
+                            height: 3vw;
+                            p {
+                                font-weight: 700;
+                                font-size: 24px;
+                                color: #614d8f;
+                            }
+                        }
+
+                        .musclesList,
+                        .accuracyList {
+                            display: flex;
+                            flex-direction: row;
+
+                            .musclesInvolved,
+                            .accuracy {
+                                // height: 2vw;
+                                padding: 8px 24px;
+                                background-color: #e7f3ff;
+                                margin-right: 1vw;
+                                border-radius: 5px;
+
+                                p {
+                                    font-size: 1vw;
+                                    font-weight: 600;
+                                    color: #614d8f;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .calendar {
+                    display: flex;
+                    align-items: center;
+                    padding: 10px;
+                    border-radius: 25px;
+                    margin-bottom: 20px;
+
+                    width: fit-content;
+
+                    background-color: #e7f3ff;
                 }
             }
         }
 
-        .right {
-            padding-left: 2vw;
-            padding-right: 2vw;
-            width: 71%;
+        .bottom {
+            display: flex;
+            // justify-content: center;
 
-            .musclesInvolvedContainer {
-                height: 8vw;
-                width: 100%;
-                .musclesInvolvedTitle,
-                .accuracyTitle {
-                    height: 3vw;
-                    p {
-                        font-weight: 700;
-                        font-size: 24px;
-                        color: #614d8f;
-                    }
-                }
-
-                .musclesList, .accuracyList {
-                    display: flex;
-                    flex-direction: row;
-
-                    .musclesInvolved,
-                    .accuracy {
-                        // height: 2vw;
-                        padding: 0.5vw 1.5vw;
-                        background-color: #e7f3ff;
-                        margin-right: 1vw;
-                        border-radius: 5px;
-
-                        p {
-                            font-size: 1vw;
-                            font-weight: 600;
-                            color: #614d8f;
-                        }
-                    }
-                }
+            .box {
+                margin-top: 50px;
+                width: 700px;
+                border-radius: 25px;
             }
         }
     }

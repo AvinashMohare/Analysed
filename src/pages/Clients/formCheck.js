@@ -1,9 +1,13 @@
 import classes from "./FormCheck.module.scss";
-import { useState } from "react";
-import { FiClock } from "react-icons/fi";
-import { ImLoop } from "react-icons/im";
-import { AiOutlineFire } from "react-icons/ai";
-import { BiSolidPencil } from "react-icons/bi";
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+const images = [
+    "https://images.pexels.com/photos/4058411/pexels-photo-4058411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "https://images.pexels.com/photos/6111616/pexels-photo-6111616.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    "https://images.pexels.com/photos/6111621/pexels-photo-6111621.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+];
 
 const FormCheck = ({ onBackClick }) => {
     const musclesArray = ["Hands", "Legs", "Hip Flexors"];
@@ -26,50 +30,65 @@ const FormCheck = ({ onBackClick }) => {
             </div>
 
             <div className={classes.container}>
-                <div className={classes.left}>
-                    <div className={classes.thumbnailContainer}>
-                        <img
-                            className={classes.thumbnailImage}
-                            src={imageLink}
-                            alt="Exercise Thumbnail"
-                        />
+                <div className={classes.top}>
+                    <div className={classes.left}>
+                        <div className={classes.thumbnailContainer}>
+                            <img
+                                className={classes.thumbnailImage}
+                                src={imageLink}
+                                alt="Exercise Thumbnail"
+                            />
+                        </div>
+                    </div>
+
+                    <div className={classes.right}>
+                        <div className={classes.calendar}>
+                            <DayPicker />
+                        </div>
+
+                        <div className={classes.details}>
+                            <div className={classes.musclesInvolvedContainer}>
+                                <div className={classes.musclesInvolvedTitle}>
+                                    <p>Muscles Involved</p>
+                                </div>
+                                <div className={classes.musclesList}>
+                                    {musclesArray.map((muscles, index) => (
+                                        <div
+                                            key={index}
+                                            className={classes.musclesInvolved}
+                                        >
+                                            <p>{muscles}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                            <div className={classes.accuracyContainer}>
+                                <div className={classes.accuracyTitle}>
+                                    <p>Accuracy</p>
+                                </div>
+                                <div className={classes.accuracyList}>
+                                    <div className={classes.accuracy}>
+                                        <p>60 %</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className={classes.right}>
-                    <div className={classes.musclesInvolvedContainer}>
-                        <div className={classes.musclesInvolvedTitle}>
-                            <p>Muscles Involved</p>
-                        </div>
-                        <div className={classes.musclesList}>
-                            {musclesArray.map((muscles, index) => (
-                                <div
-                                    key={index}
-                                    className={classes.musclesInvolved}
-                                >
-                                    <p>{muscles}</p>
+                <div className={classes.bottom}>
+                    <div className={classes.box}>
+                        <Carousel useKeyboardArrows={true}>
+                            {images.map((URL, index) => (
+                                <div className="slide">
+                                    <img
+                                        alt="exercises"
+                                        src={URL}
+                                        key={index}
+                                    />
                                 </div>
                             ))}
-                        </div>
-
-                        {/* <div className={classes.accuracyTitle}>
-                            <p>Accuracy</p>
-                        </div>
-                        <div className={classes.accuracyList}>
-                            <div className={classes.accuracy}>
-                                <p>60 %</p>
-                            </div>
-                        </div> */}
-                    </div>
-                    <div className={classes.musclesInvolvedContainer}>
-                        <div className={classes.accuracyTitle}>
-                            <p>Accuracy</p>
-                        </div>
-                        <div className={classes.accuracyList}>
-                            <div className={classes.accuracy}>
-                                <p>60 %</p>
-                            </div>
-                        </div>
+                        </Carousel>
                     </div>
                 </div>
             </div>
