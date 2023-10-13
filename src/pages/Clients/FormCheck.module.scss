@@ -1,0 +1,99 @@
+.exerciseDetailsContainer {
+    .header {
+        display: flex;
+        flex-direction: row;
+        width: 97%;
+        .exerciseTitle {
+            font-weight: 700;
+            font-size: 36px;
+            letter-spacing: 0.2px;
+            height: 4vw;
+            width: 90%;
+            p {
+                color: #3b3c40;
+            }
+        }
+
+        .buttons {
+            background-color: #6c9fff;
+            height: fit-content;
+
+            border-radius: 80px;
+
+            .button {
+                padding: 12px 25px;
+                color: #ffffff;
+                font-size: 20px;
+                font-weight: 500;
+
+                border-radius: 80px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .container {
+        display: flex;
+        flex-direction: row;
+
+        .left {
+            width: 30%;
+            .thumbnailContainer {
+                width: 22.5vw;
+                height: 29vw;
+
+                .thumbnailImage {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 20px;
+                }
+            }
+        }
+
+        .right {
+            padding-left: 2vw;
+            padding-right: 2vw;
+            width: 71%;
+
+            .musclesInvolvedContainer {
+                height: 8vw;
+                width: 100%;
+                .musclesInvolvedTitle,
+                .accuracyTitle {
+                    height: 3vw;
+                    p {
+                        font-weight: 700;
+                        font-size: 24px;
+                        color: #614d8f;
+                    }
+                }
+
+                .musclesList, .accuracyList {
+                    display: flex;
+                    flex-direction: row;
+
+                    .musclesInvolved,
+                    .accuracy {
+                        // height: 2vw;
+                        padding: 0.5vw 1.5vw;
+                        background-color: #e7f3ff;
+                        margin-right: 1vw;
+                        border-radius: 5px;
+
+                        p {
+                            font-size: 1vw;
+                            font-weight: 600;
+                            color: #614d8f;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

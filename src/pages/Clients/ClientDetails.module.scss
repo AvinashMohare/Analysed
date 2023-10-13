@@ -28,7 +28,6 @@
             }
 
             .userName {
-                // width: 13%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -40,21 +39,26 @@
             }
         }
 
-        .buttons {
-            padding: 11px 30px;
-            background-color: #6c9fff;
-            border-radius: 80px;
+        .headerButtons {
+            width: 22%;
+            display: flex;
+            justify-content: space-between;
+            .buttons {
+                padding: 11px 30px;
+                background-color: #6c9fff;
+                border-radius: 80px;
 
-            .button {
-                background-color: transparent;
-                border: none;
-                color: #ffffff;
-                font-size: 20px;
-                font-weight: 500;
+                .button {
+                    background-color: transparent;
+                    border: none;
+                    color: #ffffff;
+                    font-size: 20px;
+                    font-weight: 500;
+                }
             }
-        }
-        &:hover {
-            cursor: pointer;
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 

@@ -17,9 +17,11 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoMdAddCircle, IoMdRemoveCircle } from "react-icons/io";
 import HealthDataComponent from "./healthData";
 import ClientData from "./clientData";
+import FormCheck from "./formCheck";
 import Chart from "../../components/chart";
 
 const ClientDetails = ({ client, onBackToList }) => {
+    const [showFormCheck, setShowFormCheck] = useState(false);
     const [assignedExercises, setAssignedExercises] = useState([]);
     const [exercises, setExercises] = useState([]);
     const [showAssignExercise, setShowAssignExercise] = useState(false);
@@ -270,239 +272,293 @@ const ClientDetails = ({ client, onBackToList }) => {
         setShowAssignExercise(!showAssignExercise);
     };
 
+    const handleFormCheck = () => {
+        setShowFormCheck(!showFormCheck);
+    };
+
     return (
-        <div className={classes.rootClientDetails}>
-            <div className={classes.header}>
-                <div className={classes.headerContainer}>
-                    <div className={classes.userImage}>
-                        <img
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTte_W3r44Rc7MYnXPQZLP-z3pfAJCKJuz1GA&usqp=CAU"
-                            alt={client.userName}
-                        />
-                    </div>
-
-                    <div className={classes.userName}>
-                        <p>{client.userName}</p>
-                    </div>
-                </div>
-
-                <div className={classes.buttons} onClick={onBackToList}>
-                    <div className={classes.button}>Back</div>
-                </div>
-            </div>
-
-            <div className={classes.dashboard}>
-                <div className={classes.clientInfo}>
-                    <div className={classes.data}>
-                        <HealthDataComponent docId={docId} />
-                    </div>
-                </div>
-                <div className={classes.bottomContainer}>
-                    <div className={classes.graph}>
-                        <Chart />
-                    </div>
-                    <div className={classes.buttons}>
-                        <div className={classes.buttonsContainer}>
-                            <div className={classes.assign}>
-                                <p>Daily Chart</p>
+        <>
+            {showFormCheck ? (
+                <FormCheck onBackClick={handleFormCheck} />
+            ) : (
+                <div className={classes.rootClientDetails}>
+                    <div className={classes.header}>
+                        <div className={classes.headerContainer}>
+                            <div className={classes.userImage}>
+                                <img
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTte_W3r44Rc7MYnXPQZLP-z3pfAJCKJuz1GA&usqp=CAU"
+                                    alt={client.userName}
+                                />
                             </div>
+
+                            <div className={classes.userName}>
+                                <p>{client.userName}</p>
+                            </div>
+                        </div>
+
+                        <div className={classes.headerButtons}>
                             <div
-                                className={classes.assign}
-                                onClick={toggleNutritionOverlay}
+                                className={classes.buttons}
+                                onClick={handleFormCheck}
                             >
-                                <p>Assign Nutrition</p>
+                                <div className={classes.button}>Form Check</div>
                             </div>
+
                             <div
-                                className={classes.assign}
-                                onClick={assignExerciseHandler}
+                                className={classes.buttons}
+                                onClick={onBackToList}
                             >
-                                <p>Assign Exercises</p>
+                                <div className={classes.button}>Back</div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            {/* ///////////////////////////////////////////////////////////////? */}
-            {/* Nutrition Input Overlay */}
-            {showNutrition && (
-                <div className={classes.overlay}>
-                    <div className={classes.overlayContent}>
-                        <div className={classes.inputBox}>
-                            <label>Calories</label>
-                            <input
-                                type="text"
-                                value={nutritionData.calories}
-                                onChange={(e) =>
-                                    setNutritionData({
-                                        ...nutritionData,
-                                        calories: e.target.value,
-                                    })
-                                }
-                            />
-                        </div>
-                        <div className={classes.inputBox}>
-                            <label>Fats</label>
-                            <input
-                                type="text"
-                                value={nutritionData.fats}
-                                onChange={(e) =>
-                                    setNutritionData({
-                                        ...nutritionData,
-                                        fats: e.target.value,
-                                    })
-                                }
-                            />
-                        </div>
-                        <div className={classes.inputBox}>
-                            <label>Proteins</label>
-                            <input
-                                type="text"
-                                value={nutritionData.proteins}
-                                onChange={(e) =>
-                                    setNutritionData({
-                                        ...nutritionData,
-                                        proteins: e.target.value,
-                                    })
-                                }
-                            />
-                        </div>
-                        <div className={classes.inputBox}>
-                            <label>Carbohydrates</label>
-                            <input
-                                type="text"
-                                value={nutritionData.carbohydrates}
-                                onChange={(e) =>
-                                    setNutritionData({
-                                        ...nutritionData,
-                                        carbohydrates: e.target.value,
-                                    })
-                                }
-                            />
-                        </div>
-
-                        <button onClick={handleNutritionSubmit}>Done</button>
-                    </div>
-                </div>
-            )}
-
-            {/* /////////////////////////////////////////////////////// */}
-
-            <div className={classes.info}>
-                {showAssignExercise ? (
-                    <div
-                        className={classes.assignedExercises}
-                        ref={assignedExercisesRef}
-                    >
-                        <div className={classes.container}>
-                            <div className={classes.heading}>
-                                <p>Assigned Exercises</p>
+                    <div className={classes.dashboard}>
+                        <div className={classes.clientInfo}>
+                            <div className={classes.data}>
+                                <HealthDataComponent docId={docId} />
                             </div>
-
-                            <div className={classes.cards}>
-                                {assignedExercises.map((exercise) => (
-                                    <div
-                                        className={classes.exercise}
-                                        key={exercise.id}
-                                    >
-                                        <div className={classes.exerciseName}>
-                                            <p>{exercise.title}</p>
-                                        </div>
-
-                                        <div className={classes.delete}>
-                                            <RiDeleteBin6Line
-                                                className={classes.icon}
-                                                onClick={() =>
-                                                    handleUnassignExercise(
-                                                        exercise.id
-                                                    )
-                                                }
-                                            />
-                                        </div>
+                        </div>
+                        <div className={classes.bottomContainer}>
+                            <div className={classes.graph}>
+                                <Chart />
+                            </div>
+                            <div className={classes.buttons}>
+                                <div className={classes.buttonsContainer}>
+                                    <div className={classes.assign}>
+                                        <p>Daily Chart</p>
                                     </div>
-                                ))}
-                            </div>
-
-                            <div className={classes.footer}>
-                                <div
-                                    className={classes.buttons}
-                                    onClick={allExercisesHandler}
-                                >
-                                    <IoMdAddCircle className={classes.icon} />
+                                    <div
+                                        className={classes.assign}
+                                        onClick={toggleNutritionOverlay}
+                                    >
+                                        <p>Assign Nutrition</p>
+                                    </div>
+                                    <div
+                                        className={classes.assign}
+                                        onClick={assignExerciseHandler}
+                                    >
+                                        <p>Assign Exercises</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                ) : null}
 
-                {/*Conditionally Display all exercises using ExerciseFetcher*/}
-                {showAllExercises ? (
-                    <div className={classes.rootExercises}>
-                        <div className={classes.header}>
-                            <div className={classes.title}>
-                                <p>All Exercises</p>
+                    {/* ///////////////////////////////////////////////////////////////? */}
+                    {/* Nutrition Input Overlay */}
+                    {showNutrition && (
+                        <div className={classes.overlay}>
+                            <div className={classes.overlayContent}>
+                                <div className={classes.inputBox}>
+                                    <label>Calories</label>
+                                    <input
+                                        type="text"
+                                        value={nutritionData.calories}
+                                        onChange={(e) =>
+                                            setNutritionData({
+                                                ...nutritionData,
+                                                calories: e.target.value,
+                                            })
+                                        }
+                                    />
+                                </div>
+                                <div className={classes.inputBox}>
+                                    <label>Fats</label>
+                                    <input
+                                        type="text"
+                                        value={nutritionData.fats}
+                                        onChange={(e) =>
+                                            setNutritionData({
+                                                ...nutritionData,
+                                                fats: e.target.value,
+                                            })
+                                        }
+                                    />
+                                </div>
+                                <div className={classes.inputBox}>
+                                    <label>Proteins</label>
+                                    <input
+                                        type="text"
+                                        value={nutritionData.proteins}
+                                        onChange={(e) =>
+                                            setNutritionData({
+                                                ...nutritionData,
+                                                proteins: e.target.value,
+                                            })
+                                        }
+                                    />
+                                </div>
+                                <div className={classes.inputBox}>
+                                    <label>Carbohydrates</label>
+                                    <input
+                                        type="text"
+                                        value={nutritionData.carbohydrates}
+                                        onChange={(e) =>
+                                            setNutritionData({
+                                                ...nutritionData,
+                                                carbohydrates: e.target.value,
+                                            })
+                                        }
+                                    />
+                                </div>
+
+                                <button onClick={handleNutritionSubmit}>
+                                    Done
+                                </button>
                             </div>
                         </div>
+                    )}
 
-                        <div className={classes.container}>
-                            {/* Render the ExerciseFetcher component to fetch data */}
-                            <ExerciseFetcher
-                                onExercisesFetched={handleExercisesFetched}
-                            />
+                    {/* /////////////////////////////////////////////////////// */}
 
-                            {/* Render the exercises */}
-                            <div className={classes.gridContainer}>
-                                {exercises.map((exercise) => (
-                                    <div
-                                        key={exercise.id}
-                                        className={classes.card}
-                                    >
-                                        {/* Exercise card content */}
-                                        <div className={classes.imageContainer}>
-                                            <img
-                                                src={exercise.thumbnailURL}
-                                                alt={exercise.title}
+                    <div className={classes.info}>
+                        {showAssignExercise ? (
+                            <div
+                                className={classes.assignedExercises}
+                                ref={assignedExercisesRef}
+                            >
+                                <div className={classes.container}>
+                                    <div className={classes.heading}>
+                                        <p>Assigned Exercises</p>
+                                    </div>
+
+                                    <div className={classes.cards}>
+                                        {assignedExercises.map((exercise) => (
+                                            <div
+                                                className={classes.exercise}
+                                                key={exercise.id}
+                                            >
+                                                <div
+                                                    className={
+                                                        classes.exerciseName
+                                                    }
+                                                >
+                                                    <p>{exercise.title}</p>
+                                                </div>
+
+                                                <div className={classes.delete}>
+                                                    <RiDeleteBin6Line
+                                                        className={classes.icon}
+                                                        onClick={() =>
+                                                            handleUnassignExercise(
+                                                                exercise.id
+                                                            )
+                                                        }
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    <div className={classes.footer}>
+                                        <div
+                                            className={classes.buttons}
+                                            onClick={allExercisesHandler}
+                                        >
+                                            <IoMdAddCircle
+                                                className={classes.icon}
                                             />
                                         </div>
-                                        <div className={classes.textContainer}>
-                                            <div className={classes.titleBar}>
-                                                <h3>{exercise.title}</h3>
-                                            </div>
-                                            <p>{exercise.description}</p>
-                                        </div>
-                                        <div className={classes.footer}>
-                                            {exercise.assignedTo.includes(
-                                                client.userID
-                                            ) ? (
-                                                <IoMdRemoveCircle
-                                                    className={classes.icon}
-                                                    onClick={() => {
-                                                        handleUnassignExercise(
-                                                            exercise.id
-                                                        );
-                                                    }}
-                                                />
-                                            ) : (
-                                                <IoMdAddCircle
-                                                    className={classes.icon}
-                                                    onClick={() => {
-                                                        handleAssignExercise(
-                                                            exercise.id
-                                                        );
-                                                    }}
-                                                />
-                                            )}
-                                        </div>
                                     </div>
-                                ))}
+                                </div>
                             </div>
-                        </div>
+                        ) : null}
+
+                        {/*Conditionally Display all exercises using ExerciseFetcher*/}
+                        {showAllExercises ? (
+                            <div className={classes.rootExercises}>
+                                <div className={classes.header}>
+                                    <div className={classes.title}>
+                                        <p>All Exercises</p>
+                                    </div>
+                                </div>
+
+                                <div className={classes.container}>
+                                    {/* Render the ExerciseFetcher component to fetch data */}
+                                    <ExerciseFetcher
+                                        onExercisesFetched={
+                                            handleExercisesFetched
+                                        }
+                                    />
+
+                                    {/* Render the exercises */}
+                                    <div className={classes.gridContainer}>
+                                        {exercises.map((exercise) => (
+                                            <div
+                                                key={exercise.id}
+                                                className={classes.card}
+                                            >
+                                                {/* Exercise card content */}
+                                                <div
+                                                    className={
+                                                        classes.imageContainer
+                                                    }
+                                                >
+                                                    <img
+                                                        src={
+                                                            exercise.thumbnailURL
+                                                        }
+                                                        alt={exercise.title}
+                                                    />
+                                                </div>
+                                                <div
+                                                    className={
+                                                        classes.textContainer
+                                                    }
+                                                >
+                                                    <div
+                                                        className={
+                                                            classes.titleBar
+                                                        }
+                                                    >
+                                                        <h3>
+                                                            {exercise.title}
+                                                        </h3>
+                                                    </div>
+                                                    <p>
+                                                        {exercise.description}
+                                                    </p>
+                                                </div>
+                                                <div className={classes.footer}>
+                                                    {exercise.assignedTo.includes(
+                                                        client.userID
+                                                    ) ? (
+                                                        <IoMdRemoveCircle
+                                                            className={
+                                                                classes.icon
+                                                            }
+                                                            onClick={() => {
+                                                                handleUnassignExercise(
+                                                                    exercise.id
+                                                                );
+                                                            }}
+                                                        />
+                                                    ) : (
+                                                        <IoMdAddCircle
+                                                            className={
+                                                                classes.icon
+                                                            }
+                                                            onClick={() => {
+                                                                handleAssignExercise(
+                                                                    exercise.id
+                                                                );
+                                                            }}
+                                                        />
+                                                    )}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        ) : (
+                            <></>
+                        )}
                     </div>
-                ) : (
-                    <></>
-                )}
-            </div>
-        </div>
+                </div>
+            )}
+        </>
     );
 };
 
